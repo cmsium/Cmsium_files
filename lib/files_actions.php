@@ -38,7 +38,7 @@ function getFile($link){
         echo json_encode(["status" => "error","message" => "File not found"]);
         return;
     }
-    readFileWithSpeed($link_existence['file_path'],"asdads",1000);
+    readFileWithSpeed($link_existence['file_path'],"asdads");
 }
 
 function saveTempLink($path,$link){
