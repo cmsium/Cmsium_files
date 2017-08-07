@@ -1,6 +1,4 @@
 <?php
-phpinfo();
-/*
 require_once "config/defaults.php";
 require_once "config/requires_templates/requires.product.php";
 $URL = $_SERVER['REQUEST_URI'];
@@ -16,5 +14,4 @@ unset($params['index_php']);
 unset($params[$action]);
 $params = array_values($params);
 @$action(...$params);
-*/
 ?>
