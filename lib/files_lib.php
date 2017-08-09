@@ -4,12 +4,17 @@
  * @param $upload_path
  * @return bool Move status
  */
-function upload($tmp_path,$upload_path,$storage = '/storage'){
-    return move_uploaded_file($tmp_path, $upload_path);
+function upload($tmp_path,$upload_path){
+    $result = move_uploaded_file($tmp_path, $upload_path);
+    if (!$result)
+        return false;
+    chmod($upload_path,0775);
+    return true;
+
 }
 
 function detectUploadPath(){
-
+    return ROOTDIR.'/storage';
 }
 
 /**
@@ -169,27 +174,6 @@ function checkActionRoles($action,$permissions){
 
 
 /**
- * Create file record in base
- * @return mixed create status
- */
-function createFile($file_id,$name,$owner_user_id,$path){
-    $conn = DBConnection::getInstance();
-    $query = "CALL createFile('$file_id','$name','$owner_user_id','$path',". 0 ." );";
-    return $conn->performQuery($query);
-}
-
-
-/**
- * Delete file record from base
- * @return mixed Delete status
- */
-function deleteFile($file_id){
-    $conn = DBConnection::getInstance();
-    $query = "CALL deleteFile('$file_id');";
-    return $conn->performQuery($query);
-}
-
-/**
  * Delete file link from base
  * @return mixed Delete status
  */
@@ -197,27 +181,6 @@ function deleteLink($path){
     $conn = DBConnection::getInstance();
     $query = "CALL deleteLinkByFileId('$path');";
     return $conn->performQuery($query);
-}
-
-/**
- * Delete file permissions records from base
- * @return mixed Delete status
- */
-function deleteFilePermissions($file_id){
-    $conn = DBConnection::getInstance();
-    $query = "CALL deleteFilePermissions('$file_id');";
-    return $conn->performQuery($query);
-}
-
-
-/**
- * Create file roles in base
- * @return mixed Create status
- */
-function createFilePermissions($file_id,$user,$permissions){
-        $conn = DBConnection::getInstance();
-        $query = "CALL createFilePermissions('$file_id','$user','$permissions');";
-        return $conn->performQuery($query);
 }
 
 
