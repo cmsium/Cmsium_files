@@ -14,7 +14,7 @@ function upload($tmp_path,$upload_path){
 }
 
 function detectUploadPath(){
-    return ROOTDIR.'/storage';
+    return ROOTDIR.'/'.STORAGE;
 }
 
 /**
@@ -174,17 +174,6 @@ function checkActionRoles($action,$permissions){
 
 
 /**
- * Delete file link from base
- * @return mixed Delete status
- */
-function deleteLink($path){
-    $conn = DBConnection::getInstance();
-    $query = "CALL deleteLinkByFileId('$path');";
-    return $conn->performQuery($query);
-}
-
-
-/**
  * Get temporary link by file
  *
  * @return mixed Temporary link(hashed string)|false
@@ -207,12 +196,6 @@ function saveLink($path,$link){
     $exptime = date("Y-m-d H:i:s",time() + LINK_EXPIRED_TIME);
     $query = "CALL saveFileLink('$path','$link','$exptime');";
     return  $conn->performQuery($query);
-}
-
-function getFileData($file_id){
-    $conn = DBConnection::getInstance();
-    $query = "CALL getFileData('$file_id');";
-    return  $conn->performQueryFetch($query);
 }
 
 function checkIntegrity($file_id,$path){

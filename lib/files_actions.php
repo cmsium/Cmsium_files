@@ -38,7 +38,8 @@ function getFile($link){
         echo json_encode(["status" => "error","message" => "File not found"]);
         return;
     }
-    readFileWithSpeed($link_existence['file_path'],"asdads");
+    //TODO file name?
+    readFileWithSpeed('/'.$link_existence['file_path'],"asdads");
 }
 
 function saveTempLink($path,$link){
@@ -87,7 +88,7 @@ function generateFileId(){
 function createFile($file_name){
     if (!empty($_FILES)) {
         $validator = Validator::getInstance();
-        $file_name = $validator->Check('Md5Type',$file_name,[]);
+        $file_name = $validator->Check('hashedFileName',$file_name,['types'=>FILES_ALLOWED_TYPES]);
         if ($file_name === false){
             echo json_encode(["status" => "error", "message" => "Wrong file name"]);
             return;
@@ -110,7 +111,8 @@ function createFile($file_name){
         $fullpath = "$path/$file_name";
         if (upload($_FILES['userfile']['tmp_name'],$fullpath)){
             //addToZip();
-            echo json_encode(["status" => "ok", "path" => HOST_URL."/$fullpath"]);
+            $url = Config::get('host_url');
+            echo json_encode(["status" => "ok", "path" => $url."/$fullpath"]);
             return;
         } else {
             echo json_encode(["status" => "error", "message" => "Create file error"]);
@@ -126,7 +128,16 @@ function deleteFile($path){
         echo json_encode(["status" => "error", "message" => "Wrong path format"]);
         return;
     }
-    unlink($path);
+    if (!unlink('/'.$path)){
+        echo json_encode(["status" => "error", "message" => "Delete file error"]);
+        return;
+    }
+    echo json_encode(["status" => "ok"]);
+    return;
+}
+
+function serverStatus(){
+    echo json_encode(["status" => "ok","free_disk_space"=>disk_free_space(STORAGE)]);
 }
 
 

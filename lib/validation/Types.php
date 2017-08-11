@@ -220,6 +220,32 @@ class Types{
         return false;
     }
 
+    public static function hashedFileName($value, $props)
+    {
+        $types = implode("|",$props['types']);
+        $exp = explode(".",$value);
+        if (!self::Md5Type($exp[0],$props))
+            return false;
+        $pattern = "/^{$types}$/u";
+        if (self::Preg($pattern, $exp[1]))
+            switch ($props['output']) {
+                case 'string':
+                    return $value;
+                    break;
+                case 'binary':
+                    $tc = TypesConverts::getInstance();
+                    return $tc->StrToBinS($value);
+                    break;
+                case 'md5':
+                    return md5($value);
+                    break;
+
+                default:
+                    return $value;
+            }
+        return false;
+    }
+
 
     /**
      *Проверяет тип файла заданной длинны
