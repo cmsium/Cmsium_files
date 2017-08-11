@@ -3,11 +3,9 @@
  * This file is executable
  * Use this script to fill your DB with migrations from the 'migrations' directory
  */
-require_once dirname(__DIR__).'/../config/init_libs.php';
-foreach (glob(ROOTDIR.'/app/modules/*/interfaces/*.php') as $require_path) {
-    require_once $require_path;
-}
-foreach (glob(ROOTDIR.'/app/modules/*/classes/*.php') as $require_path) {
-    require_once $require_path;
-}
+require_once dirname(__DIR__).'/../config/config.ini';
+require_once dirname(__DIR__).'/../config/defaults.php';
+require_once dirname(__DIR__).'/../config/requires_templates/requires.product.php';
+require_once ROOTDIR."/lib/database/Migration.php";
+require_once ROOTDIR."/lib/database/MigrationHistoryHandler.php";
 DBConnection::createDB();

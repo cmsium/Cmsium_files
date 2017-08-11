@@ -2,20 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e4ad477d-c072-4b76-9778-0a322717d6ad" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/support/migration_tool/create_db.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/support/migration_tool/drop_db.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/support/migration_tool/generate_migration.sh" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/support/migration_tool/migrate.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/support/migration_tool/migration_history.csv" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/support/migration_tool/migrations/2017-08-11-15-37_add_files_tables_and_procedures/down.sql" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/support/migration_tool/migrations/2017-08-11-15-37_add_files_tables_and_procedures/up.sql" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/support/migration_tool/rollback.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lib/database/Migration.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/lib/database/MigrationHistoryHandler.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/config.ini" afterPath="$PROJECT_DIR$/config/config.ini" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/defaults.php" afterPath="$PROJECT_DIR$/config/defaults.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/files_actions.php" afterPath="$PROJECT_DIR$/lib/files_actions.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/files_lib.php" afterPath="$PROJECT_DIR$/lib/files_lib.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/validation/Types.php" afterPath="$PROJECT_DIR$/lib/validation/Types.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/support/migration_tool/create_db.php" afterPath="$PROJECT_DIR$/support/migration_tool/create_db.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/support/migration_tool/drop_db.php" afterPath="$PROJECT_DIR$/support/migration_tool/drop_db.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/support/migration_tool/migrate.php" afterPath="$PROJECT_DIR$/support/migration_tool/migrate.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/support/migration_tool/rollback.php" afterPath="$PROJECT_DIR$/support/migration_tool/rollback.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -122,7 +115,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="connection_test.controller_files" pinned="false" current-in-tab="true">
+      <file leaf-file-name="connection_test.controller_files" pinned="false" current-in-tab="false">
         <entry file="dbDummy://dbtable:/e1fbfcfc/0c8a38fb-e694-44c6-8c6b-ae0f46be8ae8/connection_test.controller_files">
           <provider editor-type-id="text-editor">
             <state relative-caret-position="0">
@@ -133,6 +126,56 @@
           <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
             <state>
               <filtering enabled="true" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Migration.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/lib/database/Migration.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="create_db.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/support/migration_tool/create_db.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="180">
+              <caret line="9" column="65" lean-forward="false" selection-start-line="9" selection-start-column="65" selection-end-line="9" selection-end-column="65" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="drop_db.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/support/migration_tool/drop_db.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="180">
+              <caret line="9" column="65" lean-forward="false" selection-start-line="9" selection-start-column="65" selection-end-line="9" selection-end-column="65" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="migrate.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/support/migration_tool/migrate.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="180">
+              <caret line="9" column="65" lean-forward="false" selection-start-line="9" selection-start-column="65" selection-end-line="9" selection-end-column="65" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="rollback.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/support/migration_tool/rollback.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="180">
+              <caret line="9" column="65" lean-forward="false" selection-start-line="9" selection-start-column="65" selection-end-line="9" selection-end-column="65" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -188,6 +231,10 @@
         <option value="$PROJECT_DIR$/support/migration_tool/migrations/2017-08-11-15-37_add_files_tables_and_procedures/up.sql" />
         <option value="$PROJECT_DIR$/lib/validation/Types.php" />
         <option value="$PROJECT_DIR$/lib/files_actions.php" />
+        <option value="$PROJECT_DIR$/support/migration_tool/create_db.php" />
+        <option value="$PROJECT_DIR$/support/migration_tool/drop_db.php" />
+        <option value="$PROJECT_DIR$/support/migration_tool/migrate.php" />
+        <option value="$PROJECT_DIR$/support/migration_tool/rollback.php" />
       </list>
     </option>
   </component>
@@ -243,6 +290,24 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="support" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="migration_tool" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Cmsium_files" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Cmsium_files" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="storage" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
@@ -275,7 +340,7 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="validation" />
+              <option name="myItemId" value="database" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
@@ -309,9 +374,9 @@
       <recent name="$PROJECT_DIR$/validation" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/lib/database" />
       <recent name="$PROJECT_DIR$/support/migration_tool" />
       <recent name="$PROJECT_DIR$/support" />
-      <recent name="$PROJECT_DIR$/lib/database" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -427,16 +492,15 @@
       <workItem from="1502273993403" duration="5064000" />
       <workItem from="1502281599466" duration="6555000" />
       <workItem from="1502363581710" duration="6678000" />
-      <workItem from="1502446498127" duration="9266000" />
+      <workItem from="1502446498127" duration="10758000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="54141000" />
+    <option name="totallyTimeSpent" value="55633000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="65" y="24" width="1855" height="1056" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2841349" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -445,7 +509,7 @@
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32916668" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3507307" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3507307" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -468,31 +532,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/config/defaults.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="260">
-          <caret line="15" column="26" lean-forward="false" selection-start-line="15" selection-start-column="26" selection-end-line="15" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="dbDummy://dbtable:/f66a694b/0c8a38fb-e694-44c6-8c6b-ae0f46be8ae8/connection_test.controller_files" />
-    <entry file="dbDummy://dbtable:/f66a694b/0c8a38fb-e694-44c6-8c6b-ae0f46be8ae8/connection_test.files_links" />
-    <entry file="file://$PROJECT_DIR$/lib/files_actions.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/index.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="80">
-          <caret line="4" column="0" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/lib/files_lib.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="4740">
@@ -728,6 +767,46 @@
       <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
         <state>
           <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/database/Migration.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/support/migration_tool/create_db.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="9" column="65" lean-forward="false" selection-start-line="9" selection-start-column="65" selection-end-line="9" selection-end-column="65" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/support/migration_tool/drop_db.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="9" column="65" lean-forward="false" selection-start-line="9" selection-start-column="65" selection-end-line="9" selection-end-column="65" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/support/migration_tool/migrate.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="9" column="65" lean-forward="false" selection-start-line="9" selection-start-column="65" selection-end-line="9" selection-end-column="65" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/support/migration_tool/rollback.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="9" column="65" lean-forward="false" selection-start-line="9" selection-start-column="65" selection-end-line="9" selection-end-column="65" />
+          <folding />
         </state>
       </provider>
     </entry>

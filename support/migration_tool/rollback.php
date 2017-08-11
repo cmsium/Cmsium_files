@@ -3,13 +3,11 @@
  * This file is executable
  * Use this script to undo migrations dependent on args
  */
-require dirname(__DIR__).'/../config/init_libs.php';
-foreach (glob(ROOTDIR.'/app/modules/*/interfaces/*.php') as $require_path) {
-    require_once $require_path;
-}
-foreach (glob(ROOTDIR.'/app/modules/*/classes/*.php') as $require_path) {
-    require_once $require_path;
-}
+require_once dirname(__DIR__).'/../config/config.ini';
+require_once dirname(__DIR__).'/../config/defaults.php';
+require_once dirname(__DIR__).'/../config/requires_templates/requires.product.php';
+require_once ROOTDIR."/lib/database/Migration.php";
+require_once ROOTDIR."/lib/database/MigrationHistoryHandler.php";
 $history_path = Config::get('history_path');
 $migrations_path = Config::get('migrations_path');
 
