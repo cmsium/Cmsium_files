@@ -3,7 +3,6 @@
  * This file is executable
  * Use this script to undo migrations dependent on args
  */
-require_once dirname(__DIR__).'/../config/config.ini';
 require_once dirname(__DIR__).'/../config/defaults.php';
 require_once dirname(__DIR__).'/../config/requires_templates/requires.product.php';
 require_once ROOTDIR."/lib/database/Migration.php";
