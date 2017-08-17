@@ -46,8 +46,8 @@ class DBConnection {
             }
             return true;
         } else {
-            //echo "Не удалось: (" . $conn->errno . ") " . $conn->error;
-            //echo "Запрос: " . $query . PHP_EOL;
+            echo "Не удалось: (" . $conn->errno . ") " . $conn->error;
+            echo "Запрос: " . $query . PHP_EOL;
             //ErrorHandler::throwException(PERFORM_QUERY_ERROR,"page");
             return false;
         }

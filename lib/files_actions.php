@@ -43,7 +43,6 @@ function getFile($link){
 }
 
 function saveTempLink($path,$link){
-    var_dump($path,$link);
     $validator = Validator::getInstance();
     $link = $validator->Check('Md5Type',$link,[]);
     if ($link === false){
