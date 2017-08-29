@@ -51,7 +51,6 @@ function readFileWithSpeed($path,$filename, $speed = false){
     $to = $filesize;
     ob_start();
     if (isset($_SERVER['HTTP_RANGE'])) {
-        var_dump("hello");
         $range = substr($_SERVER['HTTP_RANGE'], strpos($_SERVER['HTTP_RANGE'], '=')+1);
         $from = (integer)(strtok($range, "-"));
         $to = (integer)(strtok("-"));
@@ -80,6 +79,35 @@ function readFileWithSpeed($path,$filename, $speed = false){
     fclose($file);
 }
 
+
+function registerConnect($ip,$file_path){
+    $conn = DBConnection::getInstance();
+    $query = "CALL addConnect('$ip','$file_path');";
+    return  $conn->performQuery($query)?$ip:false;
+}
+
+function checkUserConnects($ip){
+    $conn = DBConnection::getInstance();
+    $query = "CALL checkConnects('$ip');";
+    return  ($conn->performQueryFetch($query)['count(*)'] + 1) <= MAX_CONNECTIONS_PER_IP;
+}
+
+function deleteConnect($ip,$file_path){
+    $conn = DBConnection::getInstance();
+    $query = "CALL deleteConnect('$ip','$file_path');";
+    return  $conn->performQuery($query);
+}
+
+function resolveDownloadSpeed(){
+    $bandwidth = Config::get('bandwidth');
+    $conn = DBConnection::getInstance();
+    $query = "CALL countConnects();";
+    $connects_count = $conn->performQueryFetch($query)['count(*)'];
+    if ($connects_count == 0)
+        return $bandwidth > CHUNK_SIZE ? CHUNK_SIZE : $bandwidth;
+    $speed = (int)$bandwidth/$connects_count;
+    return $speed > CHUNK_SIZE ? CHUNK_SIZE : $speed;
+}
 
 /**
  * Render and output system file with basic headers

@@ -38,8 +38,18 @@ function getFile($link){
         echo json_encode(["status" => "error","message" => "File not found"]);
         return;
     }
-    //TODO file name?
-    readFileWithSpeed('/'.$link_existence['file_path'],"asdads");
+    $ip = $_SERVER['REMOTE_ADDR'];
+    if (!checkUserConnects($ip)){
+        echo json_encode(["status" => "error","message" => "Too much connections for this user"]);
+        return;
+    }
+    if (!registerConnect($ip,$link_existence['file_path'])){
+        echo json_encode(["status" => "error","message" => "You are already downloading this file"]);
+        return;
+    }
+    $speed = resolveDownloadSpeed();
+    readFileWithSpeed('/'.$link_existence['file_path'],"asdads",$speed);
+    deleteConnect($ip,$link_existence['file_path']);
 }
 
 function saveTempLink($path,$link){
@@ -97,7 +107,7 @@ function createFile($file_name){
             echo json_encode(["status" => "error", "message" => "Wrong file format"]);
             return;
         }
-        if (!checkMime($_FILES['userfile']['tmp_name'])) {
+        if (!$type = checkMime($_FILES['userfile']['tmp_name'])) {
             echo json_encode(["status" => "error", "message" => "Wrong file type"]);
             return;
         }
@@ -110,6 +120,7 @@ function createFile($file_name){
         $fullpath = "$path/$file_name";
         if (upload($_FILES['userfile']['tmp_name'],$fullpath)){
             //addToZip();
+            //makeThumbnail($file_name,$type);
             $url = Config::get('host_url');
             echo json_encode(["status" => "ok", "path" => $url."/$fullpath"]);
             return;
