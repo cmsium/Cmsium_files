@@ -26,11 +26,16 @@ function checkFile($file_id,$path){
     }
 }
 
-function getFile($link){
+function getFile($link,$name){
     $validator = Validator::getInstance();
     $link = $validator->Check('Md5Type',$link,[]);
     if ($link === false){
         echo json_encode(["status" => "error", "message" => "Wrong link format"]);
+        return;
+    }
+    $name = $validator->Check('fileName',$name,['min'=>1,'max'=>255,'types'=>FILES_ALLOWED_TYPES]);
+    if ($name === false){
+        echo json_encode(["status" => "error", "message" => "Wrong file name"]);
         return;
     }
     $link_existence = getFileByLink($link);
@@ -48,7 +53,7 @@ function getFile($link){
         return;
     }
     $speed = resolveDownloadSpeed();
-    readFileWithSpeed('/'.$link_existence['file_path'],"asdads",$speed);
+    readFileWithSpeed('/'.$link_existence['file_path'],$name,$speed);
     deleteConnect($ip,$link_existence['file_path']);
 }
 
