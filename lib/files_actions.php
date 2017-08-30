@@ -155,5 +155,16 @@ function serverStatus(){
     echo json_encode(["status" => "ok","free_disk_space"=>disk_free_space(STORAGE)]);
 }
 
+function getAllFiles(){
+    $files = scandir(ROOTDIR.'/'.STORAGE);
+    $result=[];
+    foreach ($files as $file){
+        if ($file != '.' and $file != '..'){
+            $result[]=realpath(ROOTDIR.'/'.STORAGE.'/'.$file);
+        }
+    }
+    echo json_encode(array_merge(["status" => "ok"],$result));
+}
+
 
 
