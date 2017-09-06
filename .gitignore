@@ -1,4 +1,5 @@
 .idea
 config/config.ini
 storage
+images
 support/migration_tool/migration_history.csv
