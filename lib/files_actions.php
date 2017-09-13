@@ -157,8 +157,51 @@ function deleteFile($path){
 }
 
 
+
+function moveFile($server,$path){
+    $validator = Validator::getInstance();
+    $server = $validator->Check('Path',$server,[]);
+    if ($server === false){
+        echo json_encode(["status" => "error", "message" => "Wrong server format"]);
+        exit;
+    }
+    $path = $validator->Check('Path',$path,[]);
+    if ($path === false){
+        echo json_encode(["status" => "error", "message" => "Wrong file path format"]);
+        return;
+    }
+    $dest_server = @explode('//',$path)[0];
+    $self = Config::get('host_url');
+    if ($dest_server == $self){
+        echo json_encode(["status" => "error", "message" => 'File already on this server']);
+        exit;
+    }
+    $name = @end(explode('/',$path));
+    $response = SendFile($server."/createFile?file_name=$name",'/'.$path,$name);
+    switch ($response['status']){
+        case 'error':
+            echo json_encode(["status" => "error", "message" => $response['message']]);
+            exit;
+        case 'ok':
+            $file_path = $response['path'];
+            break;
+    }
+    unlink('/'.$path);
+    echo  json_encode(["status" => "ok", "file_path" => $file_path]);
+    return;
+}
+
 function serverStatus(){
-    echo json_encode(["status" => "ok","free_disk_space"=>disk_free_space(STORAGE)]);
+    $files = scandir(ROOTDIR.'/'.STORAGE,SCANDIR_SORT_NONE);
+    $size = 0;
+    if (!empty($files)){
+    foreach ($files as $file) {
+            if ($file != '.' and $file != '..') {
+                $size += filesize(ROOTDIR.'/'.STORAGE.'/'.$file);
+            }
+        }
+    }
+    echo json_encode(["status" => "ok","free_disk_space"=>$size]);
 }
 
 
