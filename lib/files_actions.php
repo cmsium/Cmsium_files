@@ -106,7 +106,7 @@ function generateFileId(){
 function createFile($file_name){
     if (!empty($_FILES)) {
         $validator = Validator::getInstance();
-        $file_name = $validator->Check('hashedFileName',$file_name,['types'=>FILES_ALLOWED_TYPES]);
+        $file_name = $validator->Check('Md5Type',$file_name,['types'=>FILES_ALLOWED_TYPES]);
         if ($file_name === false){
             echo json_encode(["status" => "error", "message" => "Wrong file name"]);
             return;
