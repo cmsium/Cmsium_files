@@ -59,6 +59,28 @@ function getFile($link,$name){
 }
 
 
+function getFileByPath($path){
+    $validator = Validator::getInstance();
+    $path = $validator->Check('Path',$path,[]);
+    if ($path === false){
+        echo json_encode(["status" => "error", "message" => "Wrong link format"]);
+        return;
+    }
+    $ip = $_SERVER['REMOTE_ADDR'];
+    if (!checkUserConnects($ip)){
+        echo json_encode(["status" => "error","message" => "Too much connections for this user"]);
+        return;
+    }
+    if (!registerConnect($ip,$path)){
+        echo json_encode(["status" => "error","message" => "You are already downloading this file"]);
+        return;
+    }
+    $speed = resolveDownloadSpeed();
+    readFileWithSpeed('/'.$path,null,$speed);
+    deleteConnect($ip,$path);
+}
+
+
 function saveTempLink($path,$link){
     $validator = Validator::getInstance();
     $link = $validator->Check('Md5Type',$link,[]);
