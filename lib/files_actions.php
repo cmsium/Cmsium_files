@@ -110,7 +110,7 @@ function generateFileId(){
             echo json_encode(["status" => "error", "message" => "Wrong file format"]);
             return;
         }
-        if (!checkMime($_FILES['userfile']['tmp_name'])) {
+        if (!checkMime($_FILES['userfile']['tmp_name'],end(explode('.',$_FILES['userfile']['name'])))) {
             echo json_encode(["status" => "error", "message" => "Wrong file type"]);
             return;
         }
@@ -138,7 +138,7 @@ function createFile($file_name){
             echo json_encode(["status" => "error", "message" => "Wrong file format"]);
             return;
         }
-        if (!$type = checkMime($_FILES['userfile']['tmp_name'])) {
+        if (!$type = checkMime($_FILES['userfile']['tmp_name'],end(explode('.',$_FILES['userfile']['name'])))) {
             echo json_encode(["status" => "error", "message" => "Wrong file type"]);
             return;
         }

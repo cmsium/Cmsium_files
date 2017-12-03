@@ -38,7 +38,9 @@ function checkImage($path){
     return filesize($path);
 }
 
-function checkMime($path){
+function checkMime($path,$exception=null){
+    if ($exception and in_array($exception,EX_TYPES))
+        return true;
     $type = mime_content_type($path);
     if (!in_array($type,ALLOWED_FILE_MIME_TYPES))
         return false;
