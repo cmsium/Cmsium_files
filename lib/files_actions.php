@@ -4,19 +4,17 @@ function checkFile($file_id,$path){
     $validator = Validator::getInstance();
     $file_id = $validator->Check('Md5Type',$file_id,[]);
     if ($file_id === false){
-        echo json_encode(["status" => "error", "message" => "Wrong file id"]);
-        return;
+        throwException(DATA_FORMAT_ERROR);
     }
     $path = $validator->Check('Path',$path,[]);
     if ($path === false){
-        echo json_encode(["status" => "error", "message" => "Wrong file path format"]);
-        return;
+        throwException(DATA_FORMAT_ERROR);
     }
     if (!checkIntegrity($file_id,'/'.$path)) {
-        echo json_encode(["status" => "error", "message" => "File was corrupted or removed"]);
-        return;
+        throwException(CORRUPTED_FILE);
     }
     $link_existence = getLink($path);
+    //TODO no json
     if (!$link_existence){
         echo json_encode(["status" => "nolink"]);
         return;
@@ -31,27 +29,22 @@ function getFile($link,$name){
     $validator = Validator::getInstance();
     $link = $validator->Check('Md5Type',$link,[]);
     if ($link === false){
-        echo json_encode(["status" => "error", "message" => "Wrong link format"]);
-        return;
+        throwException(DATA_FORMAT_ERROR);
     }
     $name = $validator->Check('fileName',$name,['min'=>1,'max'=>255,'types'=>FILES_ALLOWED_TYPES]);
     if ($name === false){
-        echo json_encode(["status" => "error", "message" => "Wrong file name"]);
-        return;
+        throwException(DATA_FORMAT_ERROR);
     }
     $link_existence = getFileByLink($link);
     if (!$link_existence){
-        echo json_encode(["status" => "error","message" => "File not found"]);
-        return;
+        throwException(FILE_NOT_FOUND);
     }
     $ip = $_SERVER['REMOTE_ADDR'];
     if (!checkUserConnects($ip)){
-        echo json_encode(["status" => "error","message" => "Too much connections for this user"]);
-        return;
+        throwException(CONNECTIONS_LIMIT_ERROR);
     }
     if (!registerConnect($ip,$link_existence['file_path'])){
-        echo json_encode(["status" => "error","message" => "You are already downloading this file"]);
-        return;
+        throwException(ALREADY_DOWNLOAD);
     }
     $speed = resolveDownloadSpeed();
     readFileWithSpeed('/'.$link_existence['file_path'],$name,$speed);
@@ -63,17 +56,14 @@ function getFileByPath($path){
     $validator = Validator::getInstance();
     $path = $validator->Check('Path',$path,[]);
     if ($path === false){
-        echo json_encode(["status" => "error", "message" => "Wrong link format"]);
-        return;
+        throwException(DATA_FORMAT_ERROR);
     }
     $ip = $_SERVER['REMOTE_ADDR'];
     if (!checkUserConnects($ip)){
-        echo json_encode(["status" => "error","message" => "Too much connections for this user"]);
-        return;
+        throwException(CONNECTIONS_LIMIT_ERROR);
     }
     if (!registerConnect($ip,$path)){
-        echo json_encode(["status" => "error","message" => "You are already downloading this file"]);
-        return;
+        throwException(ALREADY_DOWNLOAD);
     }
     $speed = resolveDownloadSpeed();
     readFileWithSpeed('/'.$path,null,$speed);
@@ -85,19 +75,15 @@ function saveTempLink($path,$link){
     $validator = Validator::getInstance();
     $link = $validator->Check('Md5Type',$link,[]);
     if ($link === false){
-        echo json_encode(["status" => "error", "message" => "Wrong link format"]);
-        return;
+        throwException(DATA_FORMAT_ERROR);
     }
     $path = $validator->Check('Path',$path,[]);
     if ($path === false){
-        echo json_encode(["status" => "error", "message" => "Wrong file path format"]);
-        return;
+        throwException(DATA_FORMAT_ERROR);
     }
     if (!saveLink($path,$link)){
-        echo json_encode(["status" => "error", "message" => "Link save error"]);
-        return;
+        throwException(LINK_SAVE_ERROR);
     }
-    echo json_encode(["status" => "ok"]);
     return;
 }
 
@@ -107,19 +93,16 @@ function generateFileId(){
         $validator = Validator::getInstance();
         $file_data = $validator->ValidateAllByMask($_FILES['userfile'], 'fileUploadMask');
         if ($file_data === false) {
-            echo json_encode(["status" => "error", "message" => "Wrong file format"]);
-            return;
+            throwException(DATA_FORMAT_ERROR);
         }
         if (!checkMime($_FILES['userfile']['tmp_name'],end(explode('.',$_FILES['userfile']['name'])))) {
-            echo json_encode(["status" => "error", "message" => "Wrong file type"]);
-            return;
+            throwException(WRONG_FILE_TYPE);
         }
         $size = filesize($_FILES['userfile']['tmp_name']);
         if (($file_data["size"] > MAX_FILE_UPLOAD_SIZE) or ($size > MAX_FILE_UPLOAD_SIZE)) {
-            echo json_encode(["status" => "error", "message" => "File is too large"]);
-            return;
+            throwException(TOO_LARGE_FILE);
         }
-        echo json_encode(["status"=>'ok',"id"=>md5_file($_FILES['userfile']['tmp_name'])]);
+        echo md5_file($_FILES['userfile']['tmp_name']);
         return;
     }
 }
@@ -130,22 +113,18 @@ function createFile($file_name){
         $validator = Validator::getInstance();
         $file_name = $validator->Check('Md5Type',$file_name,['types'=>FILES_ALLOWED_TYPES]);
         if ($file_name === false){
-            echo json_encode(["status" => "error", "message" => "Wrong file name"]);
-            return;
+            throwException(DATA_FORMAT_ERROR);
         }
         $file_data = $validator->ValidateAllByMask($_FILES['userfile'], 'fileUploadMask');
         if ($file_data === false) {
-            echo json_encode(["status" => "error", "message" => "Wrong file format"]);
-            return;
+            throwException(DATA_FORMAT_ERROR);
         }
         if (!$type = checkMime($_FILES['userfile']['tmp_name'],end(explode('.',$_FILES['userfile']['name'])))) {
-            echo json_encode(["status" => "error", "message" => "Wrong file type"]);
-            return;
+            throwException(WRONG_FILE_TYPE);
         }
         $size = filesize($_FILES['userfile']['tmp_name']);
         if (($file_data["size"] > MAX_FILE_UPLOAD_SIZE) or ($size > MAX_FILE_UPLOAD_SIZE)) {
-            echo json_encode(["status" => "error", "message" => "File is too large"]);
-            return;
+            throwException(TOO_LARGE_FILE);
         }
         $path = detectUploadPath();
         $fullpath = "$path/$file_name";
@@ -153,11 +132,10 @@ function createFile($file_name){
             //addToZip();
             //makeThumbnail($file_name,$type);
             $url = Config::get('host_url');
-            echo json_encode(["status" => "ok", "path" => $url."/$fullpath"]);
+            echo $url."/$fullpath";
             return;
         } else {
-            echo json_encode(["status" => "error", "message" => "Create file error"]);
-            return;
+            throwException(FILE_CREATE_ERROR);
         }
     }
 }
@@ -167,14 +145,11 @@ function deleteFile($path){
     $validator = Validator::getInstance();
     $file_name = $validator->Check('Path',$path,[]);
     if ($file_name === false){
-        echo json_encode(["status" => "error", "message" => "Wrong path format"]);
-        return;
+        throwException(DATA_FORMAT_ERROR);
     }
     if (!unlink('/'.$path)){
-        echo json_encode(["status" => "error", "message" => "Delete file error"]);
-        return;
+        throwException(DELETE_FILE_ERROR);
     }
-    echo json_encode(["status" => "ok"]);
     return;
 }
 
@@ -184,22 +159,20 @@ function moveFile($server,$path){
     $validator = Validator::getInstance();
     $server = $validator->Check('Path',$server,[]);
     if ($server === false){
-        echo json_encode(["status" => "error", "message" => "Wrong server format"]);
-        exit;
+        throwException(DATA_FORMAT_ERROR);
     }
     $path = $validator->Check('Path',$path,[]);
     if ($path === false){
-        echo json_encode(["status" => "error", "message" => "Wrong file path format"]);
-        return;
+        throwException(DATA_FORMAT_ERROR);
     }
     $dest_server = @explode('//',$path)[0];
     $self = Config::get('host_url');
     if ($dest_server == $self){
-        echo json_encode(["status" => "error", "message" => 'File already on this server']);
-        exit;
+        throwException(FILE_ALREADY_EXITS);
     }
     $name = @end(explode('/',$path));
     $response = SendFile($server."/createFile?file_name=$name",'/'.$path,$name);
+    //TODO no json
     switch ($response['status']){
         case 'error':
             echo json_encode(["status" => "error", "message" => $response['message']]);
@@ -209,7 +182,7 @@ function moveFile($server,$path){
             break;
     }
     unlink('/'.$path);
-    echo  json_encode(["status" => "ok", "file_path" => $file_path]);
+    echo  $file_path;
     return;
 }
 
@@ -223,7 +196,7 @@ function serverStatus(){
             }
         }
     }
-    echo json_encode(["status" => "ok","free_disk_space"=>$size]);
+    echo $size;
 }
 
 
@@ -235,7 +208,8 @@ function getAllFiles(){
             $result[]=realpath(ROOTDIR.'/'.STORAGE.'/'.$file);
         }
     }
-    echo json_encode(array_merge(["status" => "ok"],$result));
+    //TODO no json
+    echo json_encode($result);
 }
 
 

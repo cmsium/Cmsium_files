@@ -15,3 +15,9 @@ function sendFile($URL,$file_path,$file_name){
     curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
     return json_decode(curl_exec($curl),true);
 }
+
+function throwException (array $exception){
+    header("App-Exception: {$exception['code']}");
+    ob_clean();
+    exit();
+}

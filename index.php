@@ -13,5 +13,7 @@ $params = $_GET;
 unset($params['index_php']);
 unset($params[$action]);
 $params = array_values($params);
+ob_start();
 @$action(...$params);
+ob_flush();
 ?>

@@ -3,6 +3,12 @@
   <component name="ChangeListManager">
     <list default="true" id="e4ad477d-c072-4b76-9778-0a322717d6ad" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/config.ini" afterPath="$PROJECT_DIR$/config/config.ini" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/errors/errors.messages.debug.php" afterPath="$PROJECT_DIR$/config/errors/errors.messages.debug.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/errors/errors.messages.product.php" afterPath="$PROJECT_DIR$/config/errors/errors.messages.product.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.php" afterPath="$PROJECT_DIR$/index.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/connection.php" afterPath="$PROJECT_DIR$/lib/connection.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/files_actions.php" afterPath="$PROJECT_DIR$/lib/files_actions.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -43,28 +49,28 @@
       <file leaf-file-name="files_actions.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/lib/files_actions.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="181">
-              <caret line="61" column="22" lean-forward="false" selection-start-line="61" selection-start-column="9" selection-end-line="61" selection-end-column="22" />
+            <state relative-caret-position="270">
+              <caret line="174" column="18" lean-forward="false" selection-start-line="174" selection-start-column="18" selection-end-line="174" selection-end-column="18" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/.gitignore">
+      <file leaf-file-name="errors.messages.debug.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/config/errors/errors.messages.debug.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="72">
-              <caret line="4" column="6" lean-forward="false" selection-start-line="4" selection-start-column="6" selection-end-line="4" selection-end-column="6" />
+            <state relative-caret-position="144">
+              <caret line="8" column="9" lean-forward="false" selection-start-line="8" selection-start-column="9" selection-end-line="8" selection-end-column="27" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="config.ini" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/config/config.ini">
+      <file leaf-file-name="files_lib.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/lib/files_lib.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="162">
-              <caret line="9" column="0" lean-forward="false" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+            <state relative-caret-position="720">
+              <caret line="40" column="40" lean-forward="false" selection-start-line="40" selection-start-column="40" selection-end-line="40" selection-end-column="40" />
               <folding />
             </state>
           </provider>
@@ -81,7 +87,6 @@
       <find>createFile</find>
       <find>fileuplo</find>
       <find>generateFileId</find>
-      <find>mime</find>
       <find>deleteFile</find>
       <find>path</find>
       <find>remowed</find>
@@ -93,6 +98,8 @@
       <find>Wrong file name</find>
       <find>var</find>
       <find>wrong file name</find>
+      <find>mime</find>
+      <find>checkmime</find>
     </findStrings>
     <replaceStrings>
       <replace>function</replace>
@@ -108,15 +115,12 @@
         <option value="$PROJECT_DIR$/lib/controller_actions.php" />
         <option value="$PROJECT_DIR$/config/requires_templates/requires.debug.php" />
         <option value="$PROJECT_DIR$/config/requires_templates/requires.product.php" />
-        <option value="$PROJECT_DIR$/index.php" />
         <option value="/f66a694b/0c8a38fb-e694-44c6-8c6b-ae0f46be8ae8/schema/connection_test/routine/checkFileLink.(varchar(32)).sql" />
         <option value="/f66a694b/0c8a38fb-e694-44c6-8c6b-ae0f46be8ae8/schema/connection_test/routine/generateFileLink.(varchar(32)).sql" />
         <option value="$PROJECT_DIR$/lib/database/DBConnection.php" />
         <option value="/f66a694b/0c8a38fb-e694-44c6-8c6b-ae0f46be8ae8/schema/connection_test/routine/getFileLink.(varchar(255)).sql" />
         <option value="$PROJECT_DIR$/storage/test.txt" />
         <option value="$PROJECT_DIR$/lib/validation/Validator.php" />
-        <option value="$PROJECT_DIR$/config/defaults.php" />
-        <option value="$PROJECT_DIR$/lib/files_lib.php" />
         <option value="$PROJECT_DIR$/support/migration_tool/migrations/2017-08-11-15-37_add_files_tables_and_procedures/up.sql" />
         <option value="$PROJECT_DIR$/lib/validation/Types.php" />
         <option value="$PROJECT_DIR$/support/migration_tool/create_db.php" />
@@ -127,9 +131,14 @@
         <option value="$PROJECT_DIR$/getTestFile.php" />
         <option value="$PROJECT_DIR$/.htaccess" />
         <option value="$PROJECT_DIR$/getTestMemcache.php" />
-        <option value="$PROJECT_DIR$/lib/connection.php" />
-        <option value="$PROJECT_DIR$/lib/files_actions.php" />
+        <option value="$PROJECT_DIR$/lib/files_lib.php" />
+        <option value="$PROJECT_DIR$/config/defaults.php" />
         <option value="$PROJECT_DIR$/config/config.ini" />
+        <option value="$PROJECT_DIR$/config/errors/errors.messages.product.php" />
+        <option value="$PROJECT_DIR$/lib/connection.php" />
+        <option value="$PROJECT_DIR$/index.php" />
+        <option value="$PROJECT_DIR$/config/errors/errors.messages.debug.php" />
+        <option value="$PROJECT_DIR$/lib/files_actions.php" />
       </list>
     </option>
   </component>
@@ -177,6 +186,12 @@
               <item name="Cmsium_files" type="b2602c69:ProjectViewProjectNode" />
               <item name="Cmsium_files" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="config" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
+            <path>
+              <item name="Cmsium_files" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Cmsium_files" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="config" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="errors" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
               <item name="Cmsium_files" type="b2602c69:ProjectViewProjectNode" />
@@ -340,18 +355,22 @@
       <workItem from="1510319764892" duration="1659000" />
       <workItem from="1511790961873" duration="1103000" />
       <workItem from="1511948162955" duration="406000" />
-      <workItem from="1512318046302" duration="618000" />
+      <workItem from="1512318046302" duration="1448000" />
+      <workItem from="1514548083740" duration="1342000" />
+      <workItem from="1516622514253" duration="3666000" />
+      <workItem from="1516707328240" duration="2242000" />
+      <workItem from="1516894819564" duration="1815000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="115635000" />
+    <option name="totallyTimeSpent" value="125530000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="65" y="-4" width="1855" height="1084" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.34604755" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3631841" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32946378" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -377,19 +396,12 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager />
+    <breakpoint-manager>
+      <option name="time" value="1" />
+    </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/lib/files_lib.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="20">
-          <caret line="1" column="0" lean-forward="true" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/config/init_libs.php" />
     <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/0c8a38fb-e694-44c6-8c6b-ae0f46be8ae8/console.sql" />
     <entry file="file://$PROJECT_DIR$/lib/FileHandler.php" />
     <entry file="dbSrc:///b342d948/0c8a38fb-e694-44c6-8c6b-ae0f46be8ae8/schema/connection_test/routine/getFileDataFromSandbox.(varchar(32)).sql" />
@@ -425,13 +437,6 @@
     <entry file="dbSrc:///f66a694b/0c8a38fb-e694-44c6-8c6b-ae0f46be8ae8/schema/connection_test/routine/getFileLink.(varchar(255)).sql" />
     <entry file="dbDummy://dbtable:/f66a694b/0c8a38fb-e694-44c6-8c6b-ae0f46be8ae8/connection_test.controller_files" />
     <entry file="dbDummy://dbtable:/f66a694b/0c8a38fb-e694-44c6-8c6b-ae0f46be8ae8/connection_test.files_links" />
-    <entry file="file://$PROJECT_DIR$/index.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="160">
-          <caret line="8" column="1" lean-forward="false" selection-start-line="8" selection-start-column="1" selection-end-line="8" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/lib/validation/Masks.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="342">
@@ -518,13 +523,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="das://table:/e1fbfcfc/e60e2111-22b0-41c5-b1dd-ce9e980c5184/files.files_links">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/getTestFile.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="288">
@@ -561,42 +559,73 @@
         </state>
       </provider>
     </entry>
+    <entry file="das://table:/e1fbfcfc/e60e2111-22b0-41c5-b1dd-ce9e980c5184/files.files_links">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/config.ini">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="54">
+          <caret line="3" column="25" lean-forward="false" selection-start-line="3" selection-start-column="25" selection-end-line="3" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/config/defaults.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="234">
-          <caret line="15" column="0" lean-forward="false" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="29" />
+        <state relative-caret-position="270">
+          <caret line="17" column="79" lean-forward="false" selection-start-line="17" selection-start-column="79" selection-end-line="17" selection-end-column="79" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="17" column="11" lean-forward="false" selection-start-line="17" selection-start-column="11" selection-end-line="17" selection-end-column="11" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/connection.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="7" column="9" lean-forward="false" selection-start-line="7" selection-start-column="9" selection-end-line="7" selection-end-column="9" />
+        <state relative-caret-position="396">
+          <caret line="22" column="1" lean-forward="false" selection-start-line="22" selection-start-column="1" selection-end-line="22" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/errors/errors.messages.product.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="162">
+          <caret line="9" column="95" lean-forward="false" selection-start-line="9" selection-start-column="95" selection-end-line="9" selection-end-column="95" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/files_lib.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="215" column="9" lean-forward="false" selection-start-line="215" selection-start-column="9" selection-end-line="215" selection-end-column="9" />
+        <state relative-caret-position="720">
+          <caret line="40" column="40" lean-forward="false" selection-start-line="40" selection-start-column="40" selection-end-line="40" selection-end-column="40" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/config/config.ini">
+    <entry file="file://$PROJECT_DIR$/config/errors/errors.messages.debug.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="9" column="0" lean-forward="false" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+        <state relative-caret-position="144">
+          <caret line="8" column="9" lean-forward="false" selection-start-line="8" selection-start-column="9" selection-end-line="8" selection-end-column="27" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/files_actions.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="181">
-          <caret line="61" column="22" lean-forward="false" selection-start-line="61" selection-start-column="9" selection-end-line="61" selection-end-column="22" />
+        <state relative-caret-position="270">
+          <caret line="174" column="18" lean-forward="false" selection-start-line="174" selection-start-column="18" selection-end-line="174" selection-end-column="18" />
           <folding />
         </state>
       </provider>
