@@ -232,6 +232,3 @@ function checkIntegrity($file_id,$path){
     return ($file_id == md5_file($path));
 }
 
-function testEcho($msg){
-    echo "Hello $msg";
-}

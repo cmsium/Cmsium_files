@@ -14,12 +14,8 @@ function checkFile($file_id,$path){
         throwException(CORRUPTED_FILE);
     }
     $link_existence = getLink($path);
-    //TODO no json
-    if (!$link_existence){
-        echo json_encode(["status" => "nolink"]);
-        return;
-    } else {
-        echo json_encode(["status" => "link", "link" => $link_existence['link']]);
+    if ($link_existence){
+        echo $link_existence['link'];
         return;
     }
 }
@@ -172,15 +168,7 @@ function moveFile($server,$path){
     }
     $name = @end(explode('/',$path));
     $response = SendFile($server."/createFile?file_name=$name",'/'.$path,$name);
-    //TODO no json
-    switch ($response['status']){
-        case 'error':
-            echo json_encode(["status" => "error", "message" => $response['message']]);
-            exit;
-        case 'ok':
-            $file_path = $response['path'];
-            break;
-    }
+    $file_path = $response;
     unlink('/'.$path);
     echo  $file_path;
     return;
