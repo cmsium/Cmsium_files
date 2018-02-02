@@ -28,7 +28,7 @@ function sendFile($URL,$file_path,$file_name){
     $data = ['userfile' => curl_file_create($file_path,$mime,$file_name)];
     curl_setopt($curl, CURLOPT_POSTFIELDS, $data);
     curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-    return json_decode(curl_exec($curl),true);
+    return curl_exec($curl);
 }
 
 function checkAuth(){
