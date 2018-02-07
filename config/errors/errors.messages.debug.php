@@ -14,3 +14,8 @@ define ("CORRUPTED_FILE",['code' => 815, 'text' => 'Файл был повреж
 define ("CONNECTIONS_LIMIT_ERROR",['code' => 816, 'text' => 'Слишком много соединений для данного пользователя']);
 define ("ALREADY_DOWNLOAD",['code' => 817, 'text' => 'Вы уже загружаете этот файл']);
 define ("LINK_SAVE_ERROR",['code' => 818, 'text' => 'Ошибка сохранения ссылки']);
+define ("ERROR_DB_CONNECTION",['code' => 119, 'text' => 'Не удалось подключиться к базе данных!']);
+define ("PERFORM_QUERY_ERROR",['code' => 120, 'text' => 'Не удалось выполнить запрос к базе данных!']);
+define ("UNSUPPORTED_DATA_TYPE",['code' => 147, 'text' => 'Неподдерживаемый тип данных']);
+define ("ERROR_DB_TRANSACTION",['code' => 124, 'text' => 'Ошибка транзакции БД!']);
+define ("DB_CONN_CLOSE_ERROR",['code' => 129, 'text' => 'Ошибка закрытия соединения БД!']);

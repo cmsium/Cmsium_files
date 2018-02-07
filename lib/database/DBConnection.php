@@ -23,7 +23,7 @@ class DBConnection {
         $password = Config::get('password');
         $conn = new mysqli($host, $username, $password, $dbname, $port);
         if ($conn->connect_errno) {
-            ErrorHandler::throwException(ERROR_DB_CONNECTION);
+            throwException(ERROR_DB_CONNECTION);
         }
         $conn->set_charset('utf8');
         $this->conn = $conn;
@@ -48,7 +48,7 @@ class DBConnection {
         } else {
             echo "Не удалось: (" . $conn->errno . ") " . $conn->error;
             echo "Запрос: " . $query . PHP_EOL;
-            //ErrorHandler::throwException(PERFORM_QUERY_ERROR,"page");
+            //throwException(PERFORM_QUERY_ERROR,"page");
             return false;
         }
     }
@@ -63,7 +63,7 @@ class DBConnection {
             return true;
         } else {
             echo "Не удалось: (" . $conn->errno . ") " . $conn->error;
-            //ErrorHandler::throwException(PERFORM_QUERY_ERROR,"page");
+            //throwException(PERFORM_QUERY_ERROR,"page");
             return false;
         }
     }
@@ -87,7 +87,7 @@ class DBConnection {
         } else {
             //echo "Не удалось: (" . $conn->errno . ") " . $conn->error . PHP_EOL;
             //echo "Запрос: " . $query . PHP_EOL;
-            //ErrorHandler::throwException(PERFORM_QUERY_ERROR);
+            //throwException(PERFORM_QUERY_ERROR);
         }
     }
 
@@ -110,7 +110,7 @@ class DBConnection {
         } else {
             echo "Не удалось: (" . $conn->errno . ") " . $conn->error;
             echo "Запрос: " . $query . PHP_EOL;
-            ErrorHandler::throwException(PERFORM_QUERY_ERROR);
+            throwException(PERFORM_QUERY_ERROR);
         }
     }
 
@@ -127,13 +127,13 @@ class DBConnection {
         $stmt = $conn->prepare($query);
         if (!$stmt) {
             echo "Не удалось: (" . $conn->errno . ") " . $conn->error;
-            ErrorHandler::throwException(PERFORM_QUERY_ERROR);
+            throwException(PERFORM_QUERY_ERROR);
         }
         $types = $this->getDataTypes($params);
         $stmt->bind_param($types, ...$params);
         if (!$stmt->execute()) {
             echo "Не удалось: (" . $conn->errno . ") " . $conn->error;
-            ErrorHandler::throwException(PERFORM_QUERY_ERROR);
+            throwException(PERFORM_QUERY_ERROR);
         }
         $stmt->close();
         return true;
@@ -152,13 +152,13 @@ class DBConnection {
         $stmt = $conn->prepare($query);
         if (!$stmt) {
             echo "Не удалось: (" . $conn->errno . ") " . $conn->error;
-            ErrorHandler::throwException(PERFORM_QUERY_ERROR);
+            throwException(PERFORM_QUERY_ERROR);
         }
         $types = $this->getDataTypes($params);
         $stmt->bind_param($types, ...$params);
         if (!$stmt->execute()) {
             echo "Не удалось: (" . $conn->errno . ") " . $conn->error;
-            ErrorHandler::throwException(PERFORM_QUERY_ERROR);
+            throwException(PERFORM_QUERY_ERROR);
         }
         $result = $stmt->get_result();
         $final_result = [];
@@ -192,7 +192,7 @@ class DBConnection {
                     $types .= 's';
                     break;
                 default:
-                    ErrorHandler::throwException(UNSUPPORTED_DATA_TYPE);
+                    throwException(UNSUPPORTED_DATA_TYPE);
             }
         }
         return $types;
@@ -206,7 +206,7 @@ class DBConnection {
     public function setAutoCommit($mode) {
         $conn = $this->conn;
         if (!$conn->autocommit($mode)) {
-            ErrorHandler::throwException(ERROR_DB_TRANSACTION);
+            throwException(ERROR_DB_TRANSACTION);
         }
     }
 
@@ -219,7 +219,7 @@ class DBConnection {
         $conn = $this->conn;
         $param = $read_only ? MYSQLI_TRANS_START_READ_ONLY : MYSQLI_TRANS_START_READ_WRITE;
         if (!$conn->begin_transaction($param)) {
-            ErrorHandler::throwException(ERROR_DB_TRANSACTION);
+            throwException(ERROR_DB_TRANSACTION);
         }
     }
 
@@ -229,7 +229,7 @@ class DBConnection {
     public function rollback() {
         $conn = $this->conn;
         if (!$conn->rollback()) {
-            ErrorHandler::throwException(ERROR_DB_TRANSACTION);
+            throwException(ERROR_DB_TRANSACTION);
         }
     }
 
@@ -239,7 +239,7 @@ class DBConnection {
     public function commit() {
         $conn = $this->conn;
         if (!$conn->commit()) {
-            ErrorHandler::throwException(ERROR_DB_TRANSACTION);
+            throwException(ERROR_DB_TRANSACTION);
         }
     }
 
@@ -307,7 +307,7 @@ class DBConnection {
         if ($this->conn) {
             $conn = $this->conn;
             if (!$conn->close()) {
-                ErrorHandler::throwException(DB_CONN_CLOSE_ERROR);
+                throwException(DB_CONN_CLOSE_ERROR);
             }
         }
     }
