@@ -2,14 +2,41 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e4ad477d-c072-4b76-9778-0a322717d6ad" name="Default" comment="">
+<<<<<<< Updated upstream
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/config/config.ini" afterPath="$PROJECT_DIR$/config/config.ini" />
       <change beforePath="$PROJECT_DIR$/config/errors/errors.messages.debug.php" afterPath="$PROJECT_DIR$/config/errors/errors.messages.debug.php" />
       <change beforePath="$PROJECT_DIR$/config/errors/errors.messages.product.php" afterPath="$PROJECT_DIR$/config/errors/errors.messages.product.php" />
       <change beforePath="$PROJECT_DIR$/lib/database/DBConnection.php" afterPath="$PROJECT_DIR$/lib/database/DBConnection.php" />
+=======
+      <change afterPath="$PROJECT_DIR$/api.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.htaccess" beforeDir="false" afterPath="$PROJECT_DIR$/.htaccess" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/Controller.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Controller.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/0c8a38fb-e694-44c6-8c6b-ae0f46be8ae8/_metadata_/metadata" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/0c8a38fb-e694-44c6-8c6b-ae0f46be8ae8/_metadata_/metadata" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/0c8a38fb-e694-44c6-8c6b-ae0f46be8ae8/_metadata_/metadata.keystream" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/0c8a38fb-e694-44c6-8c6b-ae0f46be8ae8/_metadata_/metadata.keystream" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/0c8a38fb-e694-44c6-8c6b-ae0f46be8ae8/_metadata_/metadata.keystream.len" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/0c8a38fb-e694-44c6-8c6b-ae0f46be8ae8/_metadata_/metadata.keystream.len" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/0c8a38fb-e694-44c6-8c6b-ae0f46be8ae8/_metadata_/metadata.len" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/0c8a38fb-e694-44c6-8c6b-ae0f46be8ae8/_metadata_/metadata.len" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/0c8a38fb-e694-44c6-8c6b-ae0f46be8ae8/_metadata_/metadata.values.at" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/0c8a38fb-e694-44c6-8c6b-ae0f46be8ae8/_metadata_/metadata.values.at" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/0c8a38fb-e694-44c6-8c6b-ae0f46be8ae8/_metadata_/metadata_i" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/0c8a38fb-e694-44c6-8c6b-ae0f46be8ae8/_metadata_/metadata_i" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/0c8a38fb-e694-44c6-8c6b-ae0f46be8ae8/_metadata_/metadata_i.len" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/0c8a38fb-e694-44c6-8c6b-ae0f46be8ae8/_metadata_/metadata_i.len" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/0c8a38fb-e694-44c6-8c6b-ae0f46be8ae8/_src_/schema/connection_test.zip" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/0c8a38fb-e694-44c6-8c6b-ae0f46be8ae8/_src_/schema/connection_test.zip" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/0c8a38fb-e694-44c6-8c6b-ae0f46be8ae8/_staging_/schema/connection_test/routine/checkFileLink.(varchar(32)).sql" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/0c8a38fb-e694-44c6-8c6b-ae0f46be8ae8/_staging_/schema/connection_test/routine/checkFileLink.(varchar(32)).sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/0c8a38fb-e694-44c6-8c6b-ae0f46be8ae8/_staging_/schema/connection_test/routine/generateFileLink.(varchar(32)).sql" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/0c8a38fb-e694-44c6-8c6b-ae0f46be8ae8/_staging_/schema/connection_test/routine/generateFileLink.(varchar(32)).sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/0c8a38fb-e694-44c6-8c6b-ae0f46be8ae8/_staging_/schema/connection_test/routine/getFileDataFromSandbox.(varchar(32)).sql" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/0c8a38fb-e694-44c6-8c6b-ae0f46be8ae8/_staging_/schema/connection_test/routine/getFileDataFromSandbox.(varchar(32)).sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/0c8a38fb-e694-44c6-8c6b-ae0f46be8ae8/_staging_/schema/connection_test/routine/getFileLink.(varchar(255)).sql" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/0c8a38fb-e694-44c6-8c6b-ae0f46be8ae8/_staging_/schema/connection_test/routine/getFileLink.(varchar(255)).sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/0c8a38fb-e694-44c6-8c6b-ae0f46be8ae8/storage.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/0c8a38fb-e694-44c6-8c6b-ae0f46be8ae8/storage.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/INFO" beforeDir="false" afterPath="$PROJECT_DIR$/INFO" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/files_actions.php" beforeDir="false" afterPath="$PROJECT_DIR$/lib/files_actions.php" afterDir="false" />
+>>>>>>> Stashed changes
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
-    <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -21,22 +48,38 @@
     <option name="GROUP_SCHEMA" value="true" />
     <option name="GROUP_CONTENTS" value="false" />
     <option name="SORT_POSITIONED" value="false" />
-    <option name="SHOW_TABLE_DETAILS" value="true" />
     <option name="SHOW_EMPTY_GROUPS" value="false" />
     <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <option name="HIDDEN_KINDS">
+      <set />
+    </option>
     <expand>
       <path>
         <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
         <item name="files@localhost" type="feb32156:DbDataSourceImpl" />
+<<<<<<< Updated upstream
+=======
       </path>
       <path>
         <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
         <item name="files@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="files: schema" type="c314c289:MysqlImplModel$Schema" />
+>>>>>>> Stashed changes
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="files@localhost" type="feb32156:DbDataSourceImpl" />
+<<<<<<< Updated upstream
         <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+=======
+        <item name="files: schema" type="c314c289:MysqlImplModel$Schema" />
+        <item name="tables" type="d4e8921:DatabaseStructure$FamilyGroup" />
+>>>>>>> Stashed changes
       </path>
       <path>
         <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
         <item name="files@localhost" type="feb32156:DbDataSourceImpl" />
+<<<<<<< Updated upstream
         <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
         <item name="files: schema" type="c314c289:MysqlImplModel$Schema" />
       </path>
@@ -53,22 +96,89 @@
         <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
         <item name="files: schema" type="c314c289:MysqlImplModel$Schema" />
         <item name="routines" type="d4e8921:DatabaseStructure$FamilyGroup" />
+=======
+        <item name="files: schema" type="c314c289:MysqlImplModel$Schema" />
+        <item name="tables" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="files_links: table" type="98d5ac3d:MysqlImplModel$Table" />
+>>>>>>> Stashed changes
       </path>
     </expand>
     <select />
   </component>
+  <component name="FUSProjectUsageTrigger">
+    <session id="-1011449280">
+      <usages-collector id="statistics.lifecycle.project">
+        <counts>
+          <entry key="project.closed" value="2" />
+          <entry key="project.open.time.1" value="2" />
+          <entry key="project.open.time.7" value="1" />
+          <entry key="project.opened" value="3" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.open">
+        <counts>
+          <entry key="JSON" value="3" />
+          <entry key="PLAIN_TEXT" value="1" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.edit">
+        <counts>
+          <entry key="JSON" value="1202" />
+        </counts>
+      </usages-collector>
+    </session>
+  </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+<<<<<<< Updated upstream
       <file leaf-file-name="files_actions.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lib/files_actions.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="0">
               <caret line="169" column="24" lean-forward="false" selection-start-line="169" selection-start-column="16" selection-end-line="169" selection-end-column="24" />
               <folding />
+=======
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/api.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="225">
+              <caret line="63" column="33" selection-start-line="63" selection-start-column="33" selection-end-line="63" selection-end-column="33" />
+              <folding>
+                <element signature="n#!!block;n#/file/meta#0;n#!!block;n#paths#0;n#!!top" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$USER_HOME$/Downloads/api (1).json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="435">
+              <caret line="29" column="38" lean-forward="true" selection-start-line="29" selection-start-column="38" selection-end-line="29" selection-end-column="38" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/lib/connection.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="75">
+              <caret line="5" column="1" selection-start-line="5" selection-start-column="1" selection-end-line="5" selection-end-column="1" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/config/defaults.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="225">
+              <caret line="17" column="8" selection-start-line="17" selection-start-column="8" selection-end-line="17" selection-end-column="27" />
+>>>>>>> Stashed changes
+            </state>
+          </provider>
+        </entry>
+      </file>
+<<<<<<< Updated upstream
       <file leaf-file-name="DBConnection.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lib/database/DBConnection.php">
           <provider selected="true" editor-type-id="text-editor">
@@ -85,6 +195,13 @@
             <state relative-caret-position="510">
               <caret line="30" column="27" lean-forward="false" selection-start-line="30" selection-start-column="27" selection-end-line="30" selection-end-column="27" />
               <folding />
+=======
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/lib/validation/Types.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="2955">
+              <caret line="197" column="35" selection-start-line="197" selection-start-column="27" selection-end-line="197" selection-end-column="35" />
+>>>>>>> Stashed changes
             </state>
           </provider>
         </entry>
@@ -109,12 +226,16 @@
       <find>file</find>
       <find>Wrong file name</find>
       <find>var</find>
+<<<<<<< Updated upstream
       <find>wrong file name</find>
       <find>mime</find>
       <find>checkmime</find>
       <find>createFile</find>
       <find>sendFile</find>
       <find>ErrorHandler::throwException</find>
+=======
+      <find>octet</find>
+>>>>>>> Stashed changes
     </findStrings>
     <replaceStrings>
       <replace>function</replace>
@@ -148,6 +269,7 @@
         <option value="$PROJECT_DIR$/config/defaults.php" />
         <option value="$PROJECT_DIR$/index.php" />
         <option value="$PROJECT_DIR$/lib/files_actions.php" />
+<<<<<<< Updated upstream
         <option value="$PROJECT_DIR$/config/config.ini" />
         <option value="$PROJECT_DIR$/support/migration_tool/migration_history.csv" />
         <option value="$PROJECT_DIR$/config/requires_templates/requires.debug.php" />
@@ -156,6 +278,9 @@
         <option value="$PROJECT_DIR$/lib/database/DBConnection.php" />
         <option value="$PROJECT_DIR$/config/errors/errors.messages.debug.php" />
         <option value="$PROJECT_DIR$/config/errors/errors.messages.product.php" />
+=======
+        <option value="$PROJECT_DIR$/api.json" />
+>>>>>>> Stashed changes
       </list>
     </option>
   </component>
@@ -168,33 +293,37 @@
   <component name="PhpServers">
     <servers />
   </component>
+<<<<<<< Updated upstream
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" interpreter_name="PHP 7" />
   <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="1491" />
     <option name="y" value="362" />
     <option name="width" value="1315" />
     <option name="height" value="743" />
+=======
+  <component name="PhpWorkspaceProjectConfiguration" interpreter_name="PHP 7" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="65" />
+    <option name="y" value="24" />
+    <option name="width" value="1855" />
+    <option name="height" value="1056" />
+>>>>>>> Stashed changes
   </component>
   <component name="ProjectView">
-    <navigator currentView="ProjectPane" proportions="" version="1">
-      <flattenPackages />
-      <showMembers />
-      <showModules />
-      <showLibraryContents />
-      <hideEmptyPackages />
-      <abbreviatePackageNames />
-      <autoscrollToSource />
-      <autoscrollFromSource />
-      <sortByType />
-      <manualOrder />
+    <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+<<<<<<< Updated upstream
+=======
+      <pane id="Scope" />
+>>>>>>> Stashed changes
       <pane id="ProjectPane">
         <subPane>
           <expand>
             <path>
               <item name="Cmsium_files" type="b2602c69:ProjectViewProjectNode" />
+<<<<<<< Updated upstream
               <item name="Cmsium_files" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
             <path>
@@ -218,6 +347,9 @@
               <item name="Cmsium_files" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="lib" type="2a2b976b:PhpTreeStructureProvider$1" />
               <item name="database" type="2a2b976b:PhpTreeStructureProvider$1" />
+=======
+              <item name="Cmsium_files" type="462c0819:PsiDirectoryNode" />
+>>>>>>> Stashed changes
             </path>
           </expand>
           <select />
@@ -229,12 +361,22 @@
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
+<<<<<<< Updated upstream
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="com.intellij.database.dataSource.DataSourceTemplate" value="MySQL" />
     <property name="add_unversioned_files" value="$PROJECT_DIR$/config/config.ini" />
+=======
+    <property name="com.intellij.database.dataSource.DataSourceTemplate" value="MySQL" />
+    <property name="database.console.LAST_STATE" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../file_controller" />
+>>>>>>> Stashed changes
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+<<<<<<< Updated upstream
+=======
+      <recent name="$PROJECT_DIR$" />
+>>>>>>> Stashed changes
       <recent name="$PROJECT_DIR$/storage" />
       <recent name="$PROJECT_DIR$/lib/database" />
       <recent name="$PROJECT_DIR$/support/migration_tool" />
@@ -262,72 +404,27 @@
     <configuration default="true" type="BashConfigurationType" factoryName="Bash">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="INTERPRETER_PATH" value="/bin/bash" />
+      <option name="PROJECT_INTERPRETER" value="false" />
       <option name="WORKING_DIRECTORY" value="" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SCRIPT_NAME" value="" />
       <option name="PARAMETERS" value="" />
       <module name="" />
-      <envs />
-      <method />
+      <method v="2" />
     </configuration>
-    <configuration default="true" type="CodeceptionConfigurationType" factoryName="Codeception">
-      <PhpTestRunnerSettings />
-      <method />
+    <configuration name="index.html" type="JavascriptDebugType" factoryName="JavaScript Debug" temporary="true" nameIsGenerated="true" uri="/tmp/swagger-ui60/index.html">
+      <method v="2" />
     </configuration>
-    <configuration default="true" type="JavaScriptTestRunnerJest" factoryName="Jest">
-      <node-interpreter value="project" />
-      <working-dir value="" />
-      <envs />
-      <scope-kind value="ALL" />
-      <method />
-    </configuration>
-    <configuration default="true" type="JavaScriptTestRunnerProtractor" factoryName="Protractor">
-      <config-file value="" />
-      <node-interpreter value="project" />
-      <envs />
-      <method />
-    </configuration>
-    <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug">
-      <method />
-    </configuration>
-    <configuration default="true" type="NodeJSConfigurationType" factoryName="Node.js" path-to-node="project" working-dir="">
-      <method />
-    </configuration>
-    <configuration default="true" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
-      <TestRunner />
-      <method />
-    </configuration>
-    <configuration default="true" type="PhpBehatConfigurationType" factoryName="Behat">
-      <BehatRunner />
-      <method />
-    </configuration>
-    <configuration default="true" type="PhpLocalRunConfigurationType" factoryName="PHP Console">
-      <method />
-    </configuration>
-    <configuration default="true" type="PhpSpecConfigurationType" factoryName="PHPSpec">
-      <PhpTestRunnerSettings />
-      <method />
-    </configuration>
-    <configuration default="true" type="js.build_tools.npm" factoryName="npm">
-      <command value="run" />
-      <scripts />
-      <node-interpreter value="project" />
-      <envs />
-      <method />
-    </configuration>
-    <configuration default="true" type="mocha-javascript-test-runner" factoryName="Mocha">
+    <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
       <node-interpreter>project</node-interpreter>
       <node-options />
-      <working-directory />
-      <pass-parent-env>true</pass-parent-env>
+      <gulpfile />
+      <tasks />
+      <arguments />
       <envs />
-      <ui />
-      <extra-mocha-options />
-      <test-kind>DIRECTORY</test-kind>
-      <test-directory />
-      <recursive>false</recursive>
-      <method />
+      <method v="2" />
     </configuration>
+<<<<<<< Updated upstream
     <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
       <node-interpreter>project</node-interpreter>
       <node-options />
@@ -339,6 +436,13 @@
   </component>
   <component name="ShelveChangesManager" show_recycled="false">
     <option name="remove_strategy" value="false" />
+=======
+    <recent_temporary>
+      <list>
+        <item itemvalue="JavaScript Debug.index.html" />
+      </list>
+    </recent_temporary>
+>>>>>>> Stashed changes
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -368,6 +472,7 @@
       <workItem from="1503999337586" duration="9199000" />
       <workItem from="1504088293532" duration="7536000" />
       <workItem from="1504174990160" duration="6917000" />
+<<<<<<< Updated upstream
       <workItem from="1504691753699" duration="8728000" />
       <workItem from="1504876266787" duration="2437000" />
       <workItem from="1505123477794" duration="599000" />
@@ -393,10 +498,16 @@
       <workItem from="1517902495823" duration="33000" />
       <workItem from="1517909262300" duration="56000" />
       <workItem from="1517911331610" duration="394000" />
+=======
+      <workItem from="1549036883841" duration="884000" />
+      <workItem from="1549037970646" duration="13000" />
+      <workItem from="1549472771195" duration="6967000" />
+>>>>>>> Stashed changes
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
+<<<<<<< Updated upstream
     <option name="totallyTimeSpent" value="138717000" />
   </component>
   <component name="ToolWindowManager">
@@ -420,6 +531,33 @@
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+=======
+    <option name="totallyTimeSpent" value="92950000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="0" y="-1" width="1920" height="1053" extended-state="6" />
+    <layout>
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.31483456" />
+      <window_info id="Structure" order="1" weight="0.25" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Database Console" weight="0.3297414" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.32916668" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Version Control" order="7" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="8" visible="true" weight="0.34806034" />
+      <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
+      <window_info anchor="bottom" id="Docker" order="10" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Database Changes" order="11" />
+      <window_info anchor="right" id="Commander" order="0" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Database" order="3" weight="0.32924226" />
+>>>>>>> Stashed changes
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -428,6 +566,7 @@
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
+<<<<<<< Updated upstream
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <option name="time" value="1" />
@@ -438,14 +577,65 @@
     <entry file="dbDummy://dbtable:/b342d948/0c8a38fb-e694-44c6-8c6b-ae0f46be8ae8/connection_test.files" />
     <entry file="file://$PROJECT_DIR$/lib/database/Config.php" />
     <entry file="dbDummy://dbtable:/b342d948/0c8a38fb-e694-44c6-8c6b-ae0f46be8ae8/connection_test.controller_files" />
+=======
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/config/init_libs.php" />
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/0c8a38fb-e694-44c6-8c6b-ae0f46be8ae8/console.sql" />
+    <entry file="file://$PROJECT_DIR$/lib/FileHandler.php" />
+    <entry file="dbSrc:///b342d948/0c8a38fb-e694-44c6-8c6b-ae0f46be8ae8/schema/connection_test/routine/getFileDataFromSandbox.(varchar(32)).sql" />
+    <entry file="dbDummy://dbtable:/b342d948/0c8a38fb-e694-44c6-8c6b-ae0f46be8ae8/connection_test.files" />
+    <entry file="file://$PROJECT_DIR$/lib/database/Config.php" />
+    <entry file="dbDummy://dbtable:/b342d948/0c8a38fb-e694-44c6-8c6b-ae0f46be8ae8/connection_test.controller_files" />
+    <entry file="file://$PROJECT_DIR$/config/requires_templates/requires.product.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="200">
+          <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/requires_templates/requires.debug.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="9" column="43" lean-forward="true" selection-start-line="9" selection-start-column="43" selection-end-line="9" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+>>>>>>> Stashed changes
     <entry file="dbSrc:///f66a694b/0c8a38fb-e694-44c6-8c6b-ae0f46be8ae8/schema/connection_test/routine/checkFileLink.(varchar(32)).sql" />
     <entry file="dbSrc:///f66a694b/0c8a38fb-e694-44c6-8c6b-ae0f46be8ae8/schema/connection_test/routine/generateFileLink.(varchar(32)).sql" />
     <entry file="dbDummy://dbtable:/f66a694b/0c8a38fb-e694-44c6-8c6b-ae0f46be8ae8/connection_test.institutes" />
     <entry file="dbDummy://dbtable:/f66a694b/0c8a38fb-e694-44c6-8c6b-ae0f46be8ae8/connection_test.event_oformlenie_zaiavleniia" />
     <entry file="dbDummy://dbtable:/f66a694b/0c8a38fb-e694-44c6-8c6b-ae0f46be8ae8/connection_test.document_destroy_confirmation" />
+<<<<<<< Updated upstream
     <entry file="dbSrc:///f66a694b/0c8a38fb-e694-44c6-8c6b-ae0f46be8ae8/schema/connection_test/routine/getFileLink.(varchar(255)).sql" />
     <entry file="dbDummy://dbtable:/f66a694b/0c8a38fb-e694-44c6-8c6b-ae0f46be8ae8/connection_test.controller_files" />
     <entry file="dbDummy://dbtable:/f66a694b/0c8a38fb-e694-44c6-8c6b-ae0f46be8ae8/connection_test.files_links" />
+=======
+    <entry file="file://$PROJECT_DIR$/lib/database/DBConnection.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1760">
+          <caret line="88" column="14" selection-start-line="88" selection-start-column="14" selection-end-line="88" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="dbSrc:///f66a694b/0c8a38fb-e694-44c6-8c6b-ae0f46be8ae8/schema/connection_test/routine/getFileLink.(varchar(255)).sql" />
+    <entry file="dbDummy://dbtable:/f66a694b/0c8a38fb-e694-44c6-8c6b-ae0f46be8ae8/connection_test.controller_files" />
+    <entry file="file://$PROJECT_DIR$/.htaccess">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="100">
+          <caret line="5" column="36" selection-start-line="5" selection-start-column="36" selection-end-line="5" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="dbDummy://dbtable:/f66a694b/0c8a38fb-e694-44c6-8c6b-ae0f46be8ae8/connection_test.files_links" />
+    <entry file="file://$PROJECT_DIR$/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="160">
+          <caret line="8" column="1" selection-start-line="8" selection-start-column="1" selection-end-line="8" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+>>>>>>> Stashed changes
     <entry file="file://$PROJECT_DIR$/lib/validation/Masks.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="342">
@@ -456,7 +646,7 @@
     <entry file="file://$PROJECT_DIR$/lib/validation/Validator.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="612">
-          <caret line="73" column="26" lean-forward="false" selection-start-line="73" selection-start-column="26" selection-end-line="73" selection-end-column="26" />
+          <caret line="73" column="26" selection-start-line="73" selection-start-column="26" selection-end-line="73" selection-end-column="26" />
         </state>
       </provider>
     </entry>
@@ -464,11 +654,7 @@
     <entry file="file://$PROJECT_DIR$/storage/a4e5670effcd562d3b62859c544dba35" />
     <entry file="file://$PROJECT_DIR$/support/migration_tool/migrations/2017-02-03-12-45_add_log_system/up.sql" />
     <entry file="file://$PROJECT_DIR$/support/migration_tool/generate_migration.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="dbDummy://dbtable:/e1fbfcfc/0c8a38fb-e694-44c6-8c6b-ae0f46be8ae8/connection_test.files_links" />
     <entry file="dbSrc:///e1fbfcfc/0c8a38fb-e694-44c6-8c6b-ae0f46be8ae8/schema/connection_test/routine/deleteLinkByFileId.(varchar(32)).sql" />
@@ -477,36 +663,33 @@
     <entry file="dbSrc:///e1fbfcfc/0c8a38fb-e694-44c6-8c6b-ae0f46be8ae8/schema/connection_test/routine/saveFileLink.(varchar(255),varchar(32),datetime).sql" />
     <entry file="dbDummy://dbtable:/e1fbfcfc/0c8a38fb-e694-44c6-8c6b-ae0f46be8ae8/connection_test.controller_files" />
     <entry file="file://$PROJECT_DIR$/lib/database/Migration.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/support/migration_tool/create_db.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="100">
-          <caret line="5" column="0" lean-forward="false" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
+          <caret line="5" selection-start-line="5" selection-end-line="5" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/support/migration_tool/drop_db.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="100">
-          <caret line="5" column="0" lean-forward="false" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
+          <caret line="5" selection-start-line="5" selection-end-line="5" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/support/migration_tool/migrate.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="100">
-          <caret line="5" column="0" lean-forward="false" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
+          <caret line="5" selection-start-line="5" selection-end-line="5" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/support/migration_tool/rollback.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="360">
+<<<<<<< Updated upstream
           <caret line="18" column="84" lean-forward="false" selection-start-line="18" selection-start-column="84" selection-end-line="18" selection-end-column="84" />
         </state>
       </provider>
@@ -538,13 +721,16 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="234">
           <caret line="13" column="51" lean-forward="false" selection-start-line="13" selection-start-column="51" selection-end-line="13" selection-end-column="51" />
+=======
+          <caret line="18" column="84" selection-start-line="18" selection-start-column="84" selection-end-line="18" selection-end-column="84" />
+>>>>>>> Stashed changes
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/support/migration_tool/migrations/2017-08-11-15-37_add_files_tables_and_procedures/up.sql">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="468">
-          <caret line="26" column="0" lean-forward="false" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
+          <caret line="26" selection-start-line="26" selection-end-line="26" />
         </state>
       </provider>
     </entry>
@@ -563,6 +749,7 @@
         </state>
       </provider>
     </entry>
+<<<<<<< Updated upstream
     <entry file="file://$PROJECT_DIR$/index.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="306">
@@ -592,12 +779,17 @@
       </provider>
     </entry>
     <entry file="das://table:/2cafc4dc/e60e2111-22b0-41c5-b1dd-ce9e980c5184/files.connects">
+=======
+    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/e60e2111-22b0-41c5-b1dd-ce9e980c5184/console.sql" />
+    <entry file="das://table:/e1fbfcfc/e60e2111-22b0-41c5-b1dd-ce9e980c5184/files.connects">
+>>>>>>> Stashed changes
       <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
         <state>
           <filtering enabled="true" />
         </state>
       </provider>
     </entry>
+<<<<<<< Updated upstream
     <entry file="das://table:/2cafc4dc/e60e2111-22b0-41c5-b1dd-ce9e980c5184/files.files_links">
       <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
         <state>
@@ -609,11 +801,18 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
           <caret line="5" column="20" lean-forward="false" selection-start-line="5" selection-start-column="20" selection-end-line="5" selection-end-column="20" />
+=======
+    <entry file="file://$PROJECT_DIR$/lib/connection.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" column="1" selection-start-line="5" selection-start-column="1" selection-end-line="5" selection-end-column="1" />
+>>>>>>> Stashed changes
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lib/files_lib.php">
+    <entry file="file://$PROJECT_DIR$/config/defaults.php">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< Updated upstream
         <state relative-caret-position="186">
           <caret line="15" column="9" lean-forward="false" selection-start-line="15" selection-start-column="9" selection-end-line="15" selection-end-column="9" />
         </state>
@@ -632,6 +831,24 @@
         <state relative-caret-position="1785">
           <caret line="105" column="43" lean-forward="false" selection-start-line="105" selection-start-column="43" selection-end-line="105" selection-end-column="43" />
           <folding />
+=======
+        <state relative-caret-position="225">
+          <caret line="17" column="8" selection-start-line="17" selection-start-column="8" selection-end-line="17" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/validation/Types.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2955">
+          <caret line="197" column="35" selection-start-line="197" selection-start-column="27" selection-end-line="197" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lib/files_lib.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="630">
+          <caret line="42" column="5" selection-start-line="42" selection-start-column="5" selection-end-line="42" selection-end-column="5" />
+>>>>>>> Stashed changes
         </state>
       </provider>
     </entry>
@@ -643,19 +860,48 @@
         </state>
       </provider>
     </entry>
+<<<<<<< Updated upstream
     <entry file="file://$PROJECT_DIR$/config/errors/errors.messages.debug.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="340">
           <caret line="20" column="91" lean-forward="false" selection-start-line="20" selection-start-column="91" selection-end-line="20" selection-end-column="91" />
           <folding />
+=======
+    <entry file="file://$USER_HOME$/Downloads/api (1).json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="435">
+          <caret line="29" column="38" lean-forward="true" selection-start-line="29" selection-start-column="38" selection-end-line="29" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" column="19" selection-start-line="3" selection-start-column="19" selection-end-line="3" selection-end-column="19" />
+>>>>>>> Stashed changes
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/connection.php">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< Updated upstream
         <state relative-caret-position="510">
           <caret line="30" column="27" lean-forward="false" selection-start-line="30" selection-start-column="27" selection-end-line="30" selection-end-column="27" />
           <folding />
+=======
+        <state relative-caret-position="686">
+          <caret line="183" column="28" selection-start-line="183" selection-start-column="28" selection-end-line="183" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="63" column="33" selection-start-line="63" selection-start-column="33" selection-end-line="63" selection-end-column="33" />
+          <folding>
+            <element signature="n#!!block;n#/file/meta#0;n#!!block;n#paths#0;n#!!top" />
+          </folding>
+>>>>>>> Stashed changes
         </state>
       </provider>
     </entry>

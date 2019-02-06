@@ -48,6 +48,7 @@ function getFile($link,$name){
 }
 
 
+
 function getFileByPath($path){
     $validator = Validator::getInstance();
     $path = $validator->Check('Path',$path,[]);
@@ -174,6 +175,7 @@ function moveFile($server,$path){
     return;
 }
 
+
 function serverStatus(){
     $files = scandir(ROOTDIR.'/'.STORAGE,SCANDIR_SORT_NONE);
     $size = 0;
@@ -200,4 +202,39 @@ function getAllFiles(){
     echo json_encode($result);
 }
 
+/*
+function getTestMemcashe(){
+    $file = ROOTDIR.'/'.STORAGE.'/5a4432139876a985a76374aca6124742.png';
+    $memcached = new Memcached('mc');
+    if(!count($memcached->getServerList() ) ) {
+        $memcached->addServer( 'localhost', 11211 );
+    }
+    if (!$memcached->get('somekey'))
+        $memcached->set('somekey',file_get_contents($file));
+    header('Content-Description: File Transfer');
+    header('Content-Type: application/octet-stream');
+    header('Content-Disposition: attachment; filename="asdasd"');
+    header('Expires: 0');
+    header('Cache-Control: must-revalidate');
+    header('Pragma: public');
+    header('Content-Length: ' . filesize($file));
+    ob_start();
+    echo $memcached->get('somekey');
+    ob_flush();
+}
+
+function getTestFile(){
+    $file = ROOTDIR.'/'.STORAGE.'/5a4432139876a985a76374aca6124742.png';
+    header('Content-Description: File Transfer');
+    header('Content-Type: application/octet-stream');
+    header('Content-Disposition: attachment; filename="asdasd"');
+    header('Expires: 0');
+    header('Cache-Control: must-revalidate');
+    header('Pragma: public');
+    header('Content-Length: ' . filesize($file));
+    ob_start();
+    echo file_get_contents($file);
+    ob_flush();
+}
+*/
 
