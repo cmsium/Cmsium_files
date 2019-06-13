@@ -1,0 +1,50 @@
+<?php
+namespace Openapi;
+
+foreach (glob(__DIR__.'/*.php') as $filename) {
+    require_once $filename;
+}
+foreach (glob(__DIR__.'/router/*.php') as $filename) {
+    require_once $filename;
+}
+
+
+$generator = new OpenApiGenerator();
+$generator->parse();
+switch ($argv[1]) {
+    case 'generate':
+        switch ($argv[2]) {
+            case 'all';
+                $generator->generateRoutes();
+                $generator->generateControllers(true);
+                $generator->generateMasks();
+                break;
+            case 'masks':
+                $generator->generateMasks();
+                break;
+            case 'routes':
+                $generator->generateRoutes();
+                $generator->generateControllers();
+                break;
+            default:
+                echo "Command not found";
+        }
+        break;
+    case 'save':
+        switch ($argv[2]) {
+            case 'all';
+                $generator->saveRoutes();
+                $generator->saveMasks();
+                $generator->save();
+                break;
+            case 'routes':
+                $generator->saveRoutes();
+                $generator->save();
+                break;
+            default:
+                echo "Comand not found";
+        }
+        break;
+}
+
+

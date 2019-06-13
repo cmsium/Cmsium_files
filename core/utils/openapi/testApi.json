@@ -1,0 +1,249 @@
+{
+    "openapi": "3.0.1",
+    "info": {
+        "title": "File Server API",
+        "description": "Service is used to directly upload and download files. This API is specified for a microservice version of a controller, but it can be used as a part of programming interface.",
+        "version": "0.1.1",
+        "contact": {
+            "email": "gren236@gmail.com"
+        }
+    },
+    "servers": [
+        {
+            "url": "http://server1.files.example.com"
+        }
+    ],
+    "paths": {
+        "/file/{hash}": {
+            "get": {
+                "summary": "Returns a file associated with given hash.",
+                "description": "Returns requested file associated with given hash (usually received from controller).",
+                "operationId": "getFile",
+                "tags": [
+                    "File"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Requested file",
+                        "content": {
+                            "application/octet-stream": {
+                                "schema": {
+                                    "type": "string",
+                                    "format": "binary"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    },
+                    "503": {
+                        "description": "Service Unavailable (download interruption)"
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "hash",
+                        "in": "path",
+                        "description": "A hash of the file to download",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "md5"
+                        },
+                        "style": "simple"
+                    }
+                ]
+            },
+            "delete": {
+                "summary": "Delete a file associated with given hash.",
+                "description": "Delete requested file associated with given hash (usually received from controller).",
+                "operationId": "deleteFile",
+                "tags": [
+                    "File"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK (File successfully deleted)"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "hash",
+                        "in": "path",
+                        "description": "A hash of the file to delete",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "style": "simple"
+                    }
+                ]
+            },
+            "post": {
+                "summary": "File upload request.",
+                "description": "File upload request.",
+                "operationId": "uploadFile",
+                "tags": [
+                    "File"
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/octet-stream": {
+                            "schema": {
+                                "type": "string",
+                                "format": "binary"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successfully uploaded file URL",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "properties": {
+                                        "url": {
+                                            "type": "string"
+                                        }
+                                    },
+                                    "required": [
+                                        "url"
+                                    ],
+                                    "example": {
+                                        "url": "http://file.service/file_hash"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    },
+                    "408": {
+                        "description": "Request Timeout. (File upload interruption)"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "hash",
+                        "in": "path",
+                        "description": "An upload hash received from controller",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "style": "simple"
+                    }
+                ]
+            }
+        },
+        "/file/meta": {
+            "post": {
+                "summary": "Associate a file on file server with hash from controller.",
+                "description": "Request file server from controller server to associate given hash with file id creating a temporary/persistent upload/read file link",
+                "operationId": "saveLink",
+                "tags": [
+                    "Meta"
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "hash": {
+                                        "type": "string",
+                                        "format": "md5"
+                                    },
+                                    "file": {
+                                        "type": "string",
+                                        "format": "AlphaNumeric",
+                                        "minLength": 3,
+                                        "maxLength": 10
+                                    },
+                                    "temp": {
+                                        "type": "boolean"
+                                    },
+                                    "expire": {
+                                        "type": "string",
+                                        "format": "date-time"
+                                    },
+                                    "type": {
+                                        "type": "string",
+                                        "enum": [
+                                            "read",
+                                            "upload"
+                                        ]
+                                    }
+                                },
+                                "required": [
+                                    "hash",
+                                    "file",
+                                    "temp",
+                                    "type"
+                                ],
+                                "example": {
+                                    "hash": "CasdEqwdaf12Asdfdfg",
+                                    "file": "af12ee23341affdd2341",
+                                    "temp": "true",
+                                    "expire": "2017-07-21T17:32:28Z",
+                                    "type": "read"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "ok"
+                    },
+                    "500": {
+                        "description": "Service Internal Error"
+                    }
+                }
+            }
+        }
+    },
+    "externalDocs": {
+        "url": "docs@example.com"
+    },
+    "security": [
+        {
+            "authFlow": []
+        }
+    ],
+    "components": {
+        "links": {},
+        "callbacks": {},
+        "schemas": {},
+        "securitySchemes": {
+            "authFlow": {
+                "type": "apiKey",
+                "name": "api_key",
+                "in": "header"
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "File",
+            "description": "Basic actions with files itself (upload, read, delete ...)"
+        },
+        {
+            "name": "Meta",
+            "description": "Actions with files meta (create link ...)"
+        }
+    ]
+}

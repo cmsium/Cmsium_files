@@ -14,6 +14,6 @@ unset($params['index_php']);
 unset($params[$action]);
 $params = array_values($params);
 ob_start();
-@$action(...$params);
+executeAction($URL,$params);
 ob_flush();
 ?>

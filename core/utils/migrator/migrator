@@ -1,0 +1,29 @@
+<?php
+
+use function Migrator\Helpers\dashesToCamelCase;
+
+// Load all from lib
+foreach (glob(__DIR__.'/lib/*.php') as $filename) {
+    require_once $filename;
+}
+
+// Set global configuration
+if ($rootDir = \Migrator\Files\getMigratorConfig('root_dir', __DIR__.'/config.ini')) {
+    $settingsPath = \Migrator\Files\getMigratorConfig('db_config_path', __DIR__.'/config.ini');
+    define('ROOTDIR', $rootDir);
+    define('SETTINGS_PATH', ROOTDIR.'/'.$settingsPath);
+} else {
+    define('ROOTDIR', dirname(__DIR__, 2));
+    define('SETTINGS_PATH', ROOTDIR.'/config/db.custom.ini');
+}
+
+// Parse commands
+$rawCommand = $argv[1];
+$command = '\\Migrator\\Actions\\'.dashesToCamelCase($rawCommand);
+$argument = $argv[2] ?? false;
+
+if (function_exists($command)) {
+    $command($argument);
+} else {
+    echo 'Command not found!'.PHP_EOL;
+}

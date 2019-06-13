@@ -1,0 +1,17 @@
+{
+  "git_url": "https://github.com/cmsium/Cmsium_library.git",
+  "destination_dir": "core",
+  "libraries": [
+    "utils/openapi",
+    "utils/migrator",
+    "lib/database",
+    "lib/files",
+    "lib/config",
+    "lib/validation",
+    "lib/http_server",
+    "lib/webgear",
+    "lib/presenter",
+    "lib/transaction",
+    "lib/queue"
+  ]
+}

@@ -1,0 +1,10 @@
+.idea
+app
+controllers
+Validation/Masks/*
+!Validation/Masks/Mask.php
+!Validation/Masks/DefaultMask.php
+!Validation/Masks/OpenAPI.php
+!Validation/Masks/OpenAPIContent.php
+!Validation/Masks/OpenAPIParameters.php
+routes

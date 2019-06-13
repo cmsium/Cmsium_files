@@ -1,0 +1,35 @@
+{
+  "test": {
+    "host": "127.0.0.1",
+    "port": 9502,
+    "type": "SwooleTable",
+    "tasks": 1000,
+    "task_structure": "TestTask",
+    "overflow": {
+      "type": "OverflowBound",
+      "bound": 80,
+      "mode": "OVERFLOW_ERROR"
+    }
+  },
+  "test2": {
+    "status": "disabled",
+    "host": "127.0.0.1",
+    "port": 9504,
+    "type": "SwooleChannel",
+    "tasks": 1000,
+    "overflow": {
+      "type": "OverflowTrend",
+      "check_time": 5000,
+      "mode": "OVERFLOW_ERROR"
+    }
+  },
+  "test3": {
+    "status": "disabled",
+    "host": "127.0.0.1",
+    "port": 9505,
+    "type": "Redis",
+    "tasks": 1000,
+    "redis_host": "172.17.0.2",
+    "redis_port": 6379
+  }
+}
