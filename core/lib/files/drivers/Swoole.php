@@ -3,6 +3,8 @@
 namespace Files\drivers;
 
 use Files\exceptions\CanNotDeleteFileException;
+use Files\exceptions\CanNotReadFileException;
+use Files\exceptions\CanNotWriteFileException;
 use Files\exceptions\CouldNotUploadException;
 use Files\exceptions\FileNotFoundException;
 
@@ -13,8 +15,6 @@ class Swoole {
     public $socket_buffer_size;
     public $socket_dontwait;
 
-    public $memory_limit = 4*1024*1024;
-
     public function __construct($settings = null) {
         if ($settings){
             swoole_async_set($settings);
@@ -22,6 +22,9 @@ class Swoole {
     }
 
     public function upload($oldName, $newName) {
+        if (!is_dir(dirname($newName))) {
+            mkdir(dirname($newName), 0777, true);
+        }
         if (!rename($oldName, $newName)){
             throw new CouldNotUploadException();
         }
@@ -31,22 +34,42 @@ class Swoole {
         if (!is_dir(dirname($file->path))) {
             mkdir(dirname($file->path), 0775, true);
         }
-        if ($file->size <= $this->memory_limit){
-            swoole_async_writefile($file->path, $content);
-        } else {
-            swoole_async_write($file->path, $content, 0);
+        if (!file_put_contents($file->path, $content)) {
+            throw new CanNotWriteFileException();
         }
         return true;
     }
 
-    public function read($file,$callback) {
-        $this->exists($file);
-        if ($file->size <= $this->memory_limit){
-            swoole_async_readfile($file->path,$callback);
-        } else {
-            swoole_async_read($file->path,$callback);
+    public function read($file) {
+        $this->exists($file->path);
+        if (file_get_contents($file->path) === false) {
+            throw new CanNotReadFileException();
         }
     }
+
+
+//    //deprecated
+//    public function write($file, $content) {
+//        if (!is_dir(dirname($file->path))) {
+//            mkdir(dirname($file->path), 0775, true);
+//        }
+//        if ($file->size <= $this->memory_limit){
+//            swoole_async_writefile($file->path, $content);
+//        } else {
+//            swoole_async_write($file->path, $content, 0);
+//        }
+//        return true;
+//    }
+//
+//    //deprecated
+//    public function read($file,$callback) {
+//        $this->exists($file);
+//        if ($file->size <= $this->memory_limit){
+//            swoole_async_readfile($file->path,$callback);
+//        } else {
+//            swoole_async_read($file->path,$callback, $this->memory_limit);
+//        }
+//    }
 
     public function exists($file) {
         if (!file_exists($file->path))
@@ -62,18 +85,19 @@ class Swoole {
         return true;
     }
 
-    public function send($file,$response) {
-        $response->header('Content-Description', 'File Transfer');
-        $response->header('Content-Type', 'application/octet-stream');
-        $response->header('Content-Disposition', 'attachment; filename="'.$file->name.'"');
-        $response->header('Expires', '0');
-        $response->header('Cache-Control', 'must-revalidate');
-        $response->header('Pragma', 'public');
-        $response->header('Content-Length', "$file->size");
-        return $response->sendfile($file->path);
+    public function send($file,$app) {
+        $app->setHeader('Content-Description', 'File Transfer');
+        $app->setHeader('Content-Type', 'application/octet-stream');
+        $app->setHeader('Content-Disposition', 'attachment; filename="'.$file->name.'"');
+        $app->setHeader('Expires', '0');
+        $app->setHeader('Cache-Control', 'must-revalidate');
+        $app->setHeader('Pragma', 'public');
+        $app->setHeader('Content-Length', "$file->size");
+        //return $response->sendfile($file->path);
+        return $app->respondFile($file->path);
     }
 
-    public function sendChunked($file, $response, $chunkSize) {
+    public function sendChunked($file, $app,  $chunkSize) {
         $filesize = $file->size;
         $from = 0;
         $to = $filesize;
@@ -81,21 +105,27 @@ class Swoole {
             $range = substr($_SERVER['HTTP_RANGE'], strpos($_SERVER['HTTP_RANGE'], '=')+1);
             $from = (integer)(strtok($range, "-"));
             $to = (integer)(strtok("-"));
-            $response->status(206);
-            $response->header('Content-Range', 'bytes '.$from.'-'.($to-1).'/'.$filesize);
+            $app->setStatusCode(206);
+            $app->setHeader('Content-Range', 'bytes '.$from.'-'.($to-1).'/'.$filesize);
         } else {
-            $response->status(200);
+            $app->setStatusCode(200);
         }
-        $response->header('Accept-Ranges', 'bytes');
-        $response->header('Content-Length', ($filesize-$from));
-        header('Content-Type', 'application/octet-stream');
-        header('Content-Disposition', 'attachment; filename="' . $file->name . '";');
+        $app->setHeader('Accept-Ranges', 'bytes');
+        $app->setHeader('Content-Length', ($filesize-$from));
+        $app->setHeader('Content-Type', 'application/octet-stream');
+        $app->setHeader('Content-Disposition', 'attachment; filename="' . $file->name . '";');
         $size = $to - $from;
         $offset = 0;
+        $fh = fopen($file->path, "r");
+        if ($fh === false){
+            throw new CanNotReadFileException();
+        }
         while($offset < $size) {
-            $response->sendfile($file->path, $offset, $chunkSize);
+            $data = fread($fh, $chunkSize);
+            $app->response->write($data);
             $offset += $chunkSize;
         }
-        fclose($file);
+        fclose($fh);
+        return true;
     }
 }

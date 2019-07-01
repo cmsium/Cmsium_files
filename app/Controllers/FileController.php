@@ -1,10 +1,13 @@
 <?php
 namespace App\Controllers;
 
+use App\Exceptions\ControllerConnectError;
 use App\File;
 use App\Link;
+use Config\ConfigManager;
 use Files\drivers\Swoole;
 use Files\FileManager;
+use mysql_xdevapi\Exception;
 use Transaction\Transaction;
 use \Validation\Validator;
 
@@ -32,15 +35,14 @@ class FileController {
        try {
            $transaction = new Transaction(compact("link","file"));
            $transaction->link->CheckStatus("read");
-           $transaction->file->createFromLink()->get()->send(app()->response);
+           $transaction->file->createFromLink()->get()->send(app());
            $transaction->commit();
        } catch (\Exception $e) {
            app()->setStatusCode($e->getCode());
            return $e->getMessage();
        }
-       die();
        //app()->setStatusCode(200);
-       return true;
+       return $file->isSend();
    }
 
    /**
@@ -90,11 +92,20 @@ class FileController {
        try {
            $transaction = new Transaction(compact("link","file"));
            $transaction->link->CheckStatus("upload");
+           $transaction->file->createFromLink();
            $transaction->file->upload($manager, app()->request->files, 'file', ROOTDIR . '/storage');
            $transaction->file->swooleSave()->dbSave();
            $transaction->link->makeRead();
            $transaction->commit();
        } catch (\Exception $e) {
+           if ($file->file_id) {
+               try{
+                   app()->controller_client->deleteFile($file);
+               } catch (\Exception $ex){
+                   //TODO log
+                   var_dump($ex->getMessage());
+               }
+           }
            app()->setStatusCode($e->getCode());
            return $e->getMessage();
        }

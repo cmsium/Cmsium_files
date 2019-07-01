@@ -10,7 +10,6 @@ class FileManager {
     public $uploadFiles = [];
 
     public $driver;
-    public $storagePath;
     public $types = [
         'image/jpg' => Image::class,
         'image/jpeg' => Image::class,
@@ -25,13 +24,10 @@ class FileManager {
         $this->driver = $driver;
     }
 
-    public function upload($filesData, $storagePath) {
-        $this->storagePath = $storagePath;
+    public function upload($filesData, $newPath) {
         $this->registerUploadFiles($filesData);
         $this->registerFiles($this->uploadFiles);
         foreach ($this->files as $key => $file){
-            $newName = $file->generateId();
-            $newPath = "{$this->storagePath}/{$newName}";
             $this->driver->upload($this->uploadFiles[$key]->tmp_name, $newPath);
             $file->path = $newPath;
         }

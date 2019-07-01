@@ -3,17 +3,23 @@
 namespace Webgear\Swoole;
 
 use HttpServer\SwooleHttpApplication;
+use HttpServer\SwooleRequest;
 use Webgear\Application as GeneralApplication;
 use Webgear\Exceptions\InvalidDataTypeException;
 
 class Application extends GeneralApplication implements SwooleHttpApplication {
 
     protected function run() {
-        $request = new \HttpServer\SwooleRequest($this->request);
+        $request = new SwooleRequest($this->request);
         return $this->router->route($request);
     }
 
     protected function finish($result) {
+        if ($this->response->isFile) {
+            $this->response->sendfile(...$result);
+            return;
+        }
+
         $this->respond($result);
     }
 
@@ -38,7 +44,8 @@ class Application extends GeneralApplication implements SwooleHttpApplication {
     }
 
     public function respondFile($filename, $offset = 0, $length = 0) {
-        $this->response->sendFile($filename, $offset, $length);
+        $this->response->isFile = true;
+        return [$filename, $offset, $length];
     }
 
     private function formResponseString($response) {

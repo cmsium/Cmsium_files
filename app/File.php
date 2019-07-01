@@ -17,6 +17,8 @@ class File {
     public $link;
     public $queue;
     public $file = null;
+    public $send = false;
+    public $memory_limit = 4*1024*1024;
     
     public function __construct($table, $mysql = null, $link = null, $queue = null) {
         $this->table = $table;
@@ -32,13 +34,17 @@ class File {
         $this->is_delete = 0;
     }
 
-    public function send($response, $chunk = null) {
+    public function send($app) {
         $file = (new \File($this->path))->with(["driver" => new Swoole(), "name" => $this->name]);
-        if ($chunk){
-            $file->sendChunked($response, $chunk);
+        if ($file->size > $this->memory_limit){
+            $this->send = $file->sendChunked($app, $this->memory_limit);
         } else {
-            $file->send($response);
+            $this->send = $file->send($app);
         }
+    }
+
+    public function isSend() {
+        return $this->send;
     }
 
     public function swooleSave() {
@@ -73,9 +79,16 @@ class File {
         $this->file_id = $this->link->file;
     }
 
-    public function upload($manager, $files, $file, $path) {
+    public function upload($manager, $files, $file, $storage) {
+        $path = $this->generatePath($storage);
         $manager->upload($files, $path);
         $this->create($manager, $file);
+    }
+
+    public function generatePath($storage) {
+        $this->id = md5($this->name.microtime(true));
+        $path = "{$storage}/".substr($this->id, 0, 2)."/{$this->id}";
+        return $path;
     }
 
     public function uploadRollback() {
@@ -85,10 +98,7 @@ class File {
     public function create($manager, $file) {
         $obj = $manager->get($file);
         $this->file = $obj;
-        $this->data = (array)$obj;
-        if ($this->link) {
-            $this->createFromLink();
-        }
+        $this->data = array_merge($this->data, (array)$obj);
         $this->is_delete = 0;
     }
 

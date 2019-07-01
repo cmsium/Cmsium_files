@@ -29,6 +29,7 @@ class Server {
         $this->sslKey  = $config->get('ssl_key_file');
         $this->http2   = (bool)$config->get('enable_http2');
 
+        $this->setStartupScript();
         $this->setRouterWorkflow();
     }
 
@@ -60,6 +61,25 @@ class Server {
             $this->initiateSwooleServer();
         }
         $this->swooleServer->start();
+    }
+
+    private function setStartupScript() {
+        if (!$this->swooleServer) {
+            $this->initiateSwooleServer();
+        }
+
+        $this->swooleServer->on("start", function ($server) {
+            try {
+                $this->application->startup();
+            } catch (\Exception $exception) {
+                $message = $exception->getMessage();
+                // TODO: Implement logging
+                echo $message.PHP_EOL;
+                die();
+            }
+        });
+
+        return $this;
     }
 
     private function setRouterWorkflow() {

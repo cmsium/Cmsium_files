@@ -16,6 +16,7 @@ abstract class Application {
     public $request;
     public $response;
     public $appDirectory = 'app';
+    public $startupCallbacks = [];
 
     public static $instance;
 
@@ -39,11 +40,30 @@ abstract class Application {
     }
 
     /**
+     * Run startup sequence of callbacks. Coroutines usage is allowed.
+     */
+    public function startup() {
+        foreach ($this->startupCallbacks as $callback) {
+            $callback();
+        }
+    }
+
+    /**
+     * Add new callback to startup sequence
+     *
+     * @param $callback callable
+     */
+    public function registerStartupCallback($callback) {
+        $this->startupCallbacks[] = $callback;
+    }
+
+    /**
      * Main handler called by web-server
      */
     public function handle($request, $response) {
         $this->request = $request;
         $this->response = $response;
+        $this->response->isFile = false;
 
         // Run pre-business middleware (request callbacks)
         $this->runMiddleware('pre');

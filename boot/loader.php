@@ -56,6 +56,15 @@ $port = $ini['port'];
 $client = new \Queue\Producers\Producer($host, $port);
 $application->queue_client = $client;
 
+//Create Controller client
+$config = \Config\ConfigManager::module('app');
+$url = $config->get('controller_url');
+$port = $config->get('controller_port');
+$timeout = $config->get('controller_timeout');
+$client = new \App\ControllerClient($url, $port, $timeout);
+$application->controller_client = $client;
+
+
 // Register middleware callbacks
 $plumber = \Plumber\Plumber::getInstance();
 $pre = $plumber->buildPipeline('webgear.pre');
@@ -66,6 +75,15 @@ include ROOTDIR.'/app/middleware.php';
 foreach (HELPERS as $helperFile) {
     include ROOTDIR.'/helpers/'.$helperFile;
 }
+
+// Start file delete coroutine
+$application->registerStartupCallback(function(){
+    $consumer = new \Queue\Consumers\Consumer("127.0.0.1", 9503);
+    $consumer->subscribe('files.delete');
+    $consumer->on('files.delete', function ($data) {
+        unlink($data['path']);
+    }, 1000);
+});
 
 //TODO pdo or inside server->on()
 // Warm up the links cache
