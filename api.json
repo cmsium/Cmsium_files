@@ -151,7 +151,7 @@
         ]
       }
     },
-    "meta": {
+    "/meta": {
       "post": {
         "summary": "Associate a file on file server with hash from controller.",
         "description": "Request file server from controller server to associate given hash with file id creating a temporary/persistent upload/read file link",
