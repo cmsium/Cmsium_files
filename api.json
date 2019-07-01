@@ -49,7 +49,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "format": "base64"
+              "format": "byte"
             },
             "style": "simple"
           }
@@ -81,7 +81,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "format":"base64"
+              "format":"byte"
             },
             "style": "simple"
           }
@@ -144,7 +144,7 @@
             "required": true,
             "schema": {
               "type": "string",
-              "format": "base64"
+              "format": "byte"
             },
             "style": "simple"
           }
@@ -167,11 +167,10 @@
                 "properties": {
                   "hash": {
                     "type": "string",
-                    "format": "base64"
+                    "format": "byte"
                   },
                   "file": {
-                    "type": "string",
-                    "format": "md5"
+                    "type": "string"
                   },
                   "temp": {
                     "type": "boolean"
