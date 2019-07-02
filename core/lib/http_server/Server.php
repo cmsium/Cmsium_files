@@ -89,6 +89,10 @@ class Server {
 
         $this->swooleServer->on("request", function ($request, $response) {
             try {
+                //TODO refactor to server helper
+                $connections = $this->swooleServer->connections->count();
+                $this->application->connections = $connections;
+
                 $this->application->handle($request, $response);
             } catch (\Exception $exception) {
                 $message = $exception->getMessage();

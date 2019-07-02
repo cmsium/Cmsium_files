@@ -214,6 +214,52 @@
           }
         }
       }
+    },
+    "/status": {
+      "get": {
+        "summary": "Get server status.",
+        "description": "Get server status: get availability, free space and  workload",
+        "operationId": "getStatus",
+        "tags": [
+          "Status"
+        ],
+        "responses": {
+          "200": {
+            "description": "Server status",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": {
+                      "type": "boolean"
+                    },
+                    "space": {
+                      "type": "integer"
+                    },
+                    "workload": {
+                      "type": "integer"
+                    }
+                  },
+                  "required": [
+                    "status",
+                    "space",
+                    "workload"
+                  ],
+                  "example": {
+                    "status": true,
+                    "space": 12353434,
+                    "workload": 127
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Service Internal Error"
+          }
+        }
+      }
     }
   },
   "externalDocs": {
@@ -244,6 +290,10 @@
     {
       "name": "Meta",
       "description": "Actions with files meta (create link ...)"
+    },
+    {
+      "name": "Status",
+      "description": "Actions with file servers status (get status ...)"
     }
   ]
 }
