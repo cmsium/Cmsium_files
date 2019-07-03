@@ -21,7 +21,7 @@ class Producer{
 
     public function connect() {
         $this->client = new \swoole_client(SWOOLE_SOCK_TCP);
-        if (!$this->client->connect($this->host, $this->port)){
+        if (!$this->client->connect($this->host, $this->port, 0.1)){
             throw new ExchangeConnectError();
         }
     }

@@ -32,7 +32,7 @@ class Consumer{
         if (!$queue_info){
             throw new WrongQueueException();
         }
-        $this->queues[$queue] = new QueueClient($queue_info['name'], $queue_info['host'], $queue_info['port']);
+        $this->queues[$queue] = $queue_info;
         $this->manager->close();
     }
 
@@ -46,8 +46,9 @@ class Consumer{
 
     public function invoke($tid, $args) {
         try{
-            $queue = $args[0];
+            $queue_info = $args[0];
             $callback = $args[1];
+            $queue = new QueueClient($queue_info['name'], $queue_info['host'], $queue_info['port']);
             $data = $queue->pop();
             if ($data) {
                 try {

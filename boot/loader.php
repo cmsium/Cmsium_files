@@ -81,14 +81,16 @@ $application->registerStartupCallback(function(){
     $consumer = new \Queue\Consumers\Consumer("127.0.0.1", 9503);
     $consumer->subscribe('files.delete');
     $consumer->on('files.delete', function ($data) {
-        unlink($data['path']);
-    }, 1000);
+        var_dump($data);
+        //unlink($data['path']);
+    }, 100);
 });
 
 //TODO pdo or inside server->on()
 // Warm up the links cache
 //go(function (){
 //    $mysql = new \Swoole\Coroutine\MySQL();
+//    $mysql->connect(app()->mysql);
 //    $mysql->connect(app()->mysql);
 //    $links = $mysql->query("SELECT * FROM links;");
 //    var_dump($links);

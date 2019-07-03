@@ -13,8 +13,9 @@ foreach (glob(ROOTDIR."/overflow/*.php") as $name){
 foreach (glob(ROOTDIR."/queues/*.php") as $name){
     include $name;
 }
+include_once ROOTDIR."/tasks/Task.php";
 foreach (glob(ROOTDIR."/tasks/*.php") as $name){
-    include $name;
+    include_once $name;
 }
 include ROOTDIR.'/ManifestParser.php';
 
@@ -59,13 +60,16 @@ $server->on('receive', function($server, $fd, $from_id, $message) use ($queue) {
                 $data = $message[1];
                 $result = $queue->push($data);
                 $server->send($fd, json_encode($result));
+                $server->close($fd);
                 break;
             case 'pop':
                 $response = $queue->pop();
                 $server->send($fd, json_encode($response));
+                $server->close($fd);
                 break;
             case 'stats':
                 $server->send($fd, json_encode($queue->stats()));
+                $server->close($fd);
                 break;
             case 'destroy':
                 $queue->destroy();
