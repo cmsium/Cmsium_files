@@ -85,13 +85,36 @@ $application->registerStartupCallback(function(){
     }, 100);
 });
 
-//TODO pdo or inside server->on()
-// Warm up the links cache
-//go(function (){
-//    $mysql = new \Swoole\Coroutine\MySQL();
-//    $mysql->connect(app()->mysql);
-//    $mysql->connect(app()->mysql);
-//    $links = $mysql->query("SELECT * FROM links;");
-//    var_dump($links);
-//});
+// Warm up links cache
+$application->registerStartupCallback(function () use ($application) {
+    go(function () use ($application) {
+        $mysql = new \Swoole\Coroutine\MySQL();
+        $mysql->connect($application->mysql);
+        $links = $mysql->query("SELECT * FROM links;");
+        if ($links) {
+            foreach ($links as $data) {
+                $link = new \App\Link($data, $application->links);
+                $link->swooleSave();
+            }
+        }
+        unset($links);
+    });
+});
+
+// Warm up files cache
+$application->registerStartupCallback(function () use ($application) {
+    go(function () use ($application) {
+        $mysql = new \Swoole\Coroutine\MySQL();
+        $mysql->connect($application->mysql);
+        $files = $mysql->query("SELECT * FROM files;");
+        if ($files) {
+            foreach ($files as $data) {
+                $file = new \App\File($application->files);
+                $file->createFromData($data);
+                $file->swooleSave();
+            }
+        }
+        unset($files);
+    });
+});
 

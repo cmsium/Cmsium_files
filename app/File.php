@@ -31,7 +31,13 @@ class File {
         if ($queue){
             $this->queue = $queue;
         }
-        $this->is_delete = 0;
+        if (!$this->is_delete) {
+            $this->is_delete = 0;
+        }
+    }
+
+    public function createFromData($data) {
+        $this->data = $data;
     }
 
     public function send($app) {
