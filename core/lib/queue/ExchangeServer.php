@@ -10,8 +10,9 @@ foreach (glob(ROOTDIR."/exceptions/*.php") as $name){
 foreach (glob(ROOTDIR."/queues/*.php") as $name){
     include $name;
 }
+include_once ROOTDIR."/tasks/Task.php";
 foreach (glob(ROOTDIR."/tasks/*.php") as $name){
-    include $name;
+    include_once $name;
 }
 include ROOTDIR.'/ManifestParser.php';
 

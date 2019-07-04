@@ -81,8 +81,7 @@ $application->registerStartupCallback(function(){
     $consumer = new \Queue\Consumers\Consumer("127.0.0.1", 9503);
     $consumer->subscribe('files.delete');
     $consumer->on('files.delete', function ($data) {
-        var_dump($data);
-        //unlink($data['path']);
+        unlink($data['path']);
     }, 100);
 });
 
