@@ -2,6 +2,8 @@
 // Bootstrapping the whole application
 
 // Load core libraries
+use Config\ConfigManager;
+
 require_once dirname(__DIR__).'/boot/defaults.php';
 require_once ROOTDIR.'/core/autoload.php';
 
@@ -50,9 +52,9 @@ $files_table->create();
 $application->files = $files_table;
 
 //Create Queue Exchange client
-$ini = parse_ini_file(ROOTDIR."/core/lib/queue/config/exchange.ini");
-$host = $ini['host'];
-$port = $ini['port'];
+$config = Config\ConfigManager::module('queue');
+$host = $config->get('host');
+$port = $config->get('port');
 $client = new \Queue\Producers\Producer($host, $port);
 $application->queue_client = $client;
 

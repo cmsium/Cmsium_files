@@ -76,10 +76,12 @@ class Link {
 
     public function CheckStatus($status) {
         if (!$this->table->exist($this->hash)){
+            //TODO log miss
             if ($this->dbGet() === false){
                 throw new LinkCheckException();
             }
         } else {
+            //TODO log hit
             $this->swooleGet();
         }
         if ($this->type != $status){

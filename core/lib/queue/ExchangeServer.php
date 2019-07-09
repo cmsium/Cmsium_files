@@ -33,6 +33,8 @@ foreach ($queues as $name => $queue_info){
 
 //TODO normal config
 $server = new \swoole_server($ini['host'], $ini['port']);
+
+
 //$server->on('connect', function($server, $fd){
 //    TODO logs
 //});

@@ -110,11 +110,13 @@ class File {
 
     public function get() {
         if ($this->exist()){
+            //TODO log hit
             $this->swooleGet();
             if ($this->is_delete == 1){
                 throw new FileGetException();
             }
         } else {
+            //TODO log miss
             if (!($result = $this->dbGet())){
                 throw new FileGetException();
             }
