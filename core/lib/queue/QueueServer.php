@@ -79,6 +79,10 @@ $server->on('receive', function($server, $fd, $from_id, $message) use ($queue) {
                 if ($info['remote_ip'] === $server->host){
                     $server->shutdown();
                 }
+                break;
+            default:
+                $server->send($fd, "Unknown command");
+                $server->close($fd);
         }
     } catch (\Exception $e) {
         //TODO logs

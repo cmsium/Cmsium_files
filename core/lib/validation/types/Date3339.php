@@ -14,7 +14,7 @@ class Date3339 extends ValidationType {
 
     public function get() {
         return function ($value) {
-            $pattern = "/^(\d+)-(0[1-9]|1[012])-(0[1-9]|[12]\d|3[01])T([01]\d|2[0-3]):([0-5]\d):([0-5]\d|60)(\.\d+)?(([Zz])|([\+|\-]([01]\d|2[0-3])))$/";
+            $pattern = "/^(\d+)-(0[1-9]|1[012])-(0[1-9]|[12]\d|3[01])T([01]\d|2[0-3]):([0-5]\d):([0-5]\d|60)(\.\d+)?(([Zz])|([\+|\-]([01]\d|2[0-3]):[0-5][0-9]))$/";
             return preg_match($pattern,$value);
         };
     }

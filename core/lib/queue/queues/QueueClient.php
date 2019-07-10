@@ -24,7 +24,7 @@ class QueueClient implements Queue {
         }
 
     }
-    
+
 
     public function stats() {
         $this->connect();

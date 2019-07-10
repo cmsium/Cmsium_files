@@ -146,6 +146,18 @@ class Link {
         }
     }
 
+    public function tempDelete() {
+        if ($this->temp) {
+            $this->swooleDelete();
+        }
+    }
+
+    public function tempDeleteRollback() {
+        if ($this->temp) {
+            $this->swooleDeleteRollback();
+        }
+    }
+
     public function deleteRollback() {
         $this->swooleSaveRollback();
         if (!$this->temp) {
@@ -226,6 +238,10 @@ class Link {
 
     public function dbUpdateCommit() {
         $this->conn->commit();
+    }
+
+    public function getUploadLink($host) {
+        return "http://$host/file/{$this->hash}";
     }
 
 }

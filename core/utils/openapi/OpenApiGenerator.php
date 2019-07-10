@@ -151,8 +151,13 @@ class OpenApiGenerator {
                 if (isset($props->requestBody)){
                     foreach ($props->requestBody->content as $contentType => $value){
                         switch ($contentType){
+                            case 'multipart/form-data':
                             case 'application/json':
                                 $data = json_decode(json_encode($value->schema), true);
+                                if (key_exists('$ref', $data)){
+                                    @$schema = end(explode('/',$data['$ref']));
+                                    $data = json_decode(json_encode($this->openapi->components->schemas->$schema), true);
+                                }
                                 $this->maskCreator->create(ucfirst($props->operationId), $data, "OpenAPIContent");
                                 break;
                         }

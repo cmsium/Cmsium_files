@@ -21,7 +21,7 @@ class Producer{
 
     public function connect() {
         $this->client = new \swoole_client(SWOOLE_SOCK_TCP);
-        if (!$this->client->connect($this->host, $this->port, 0.1)){
+        if (!$this->client->connect($this->host, $this->port)){
             throw new ExchangeConnectError();
         }
     }
@@ -49,6 +49,12 @@ class Producer{
         if ($result === false){
             throw new PushErrorException();
         }
+        $this->close();
+    }
+
+    public function stop() {
+        $this->connect();
+        $this->client->send(json_encode(['stop']));
         $this->close();
     }
 

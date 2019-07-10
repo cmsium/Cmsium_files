@@ -3,6 +3,7 @@
 namespace HttpServer;
 
 use Config\ConfigManager;
+use Exception;
 use swoole_http_server;
 
 class Server {
@@ -71,7 +72,7 @@ class Server {
         $this->swooleServer->on("start", function ($server) {
             try {
                 $this->application->startup();
-            } catch (\Exception $exception) {
+            } catch (Exception $exception) {
                 $message = $exception->getMessage();
                 // TODO: Implement logging
                 echo $message.PHP_EOL;
@@ -94,7 +95,7 @@ class Server {
                 $this->application->connections = $connections;
 
                 $this->application->handle($request, $response);
-            } catch (\Exception $exception) {
+            } catch (Exception $exception) {
                 $message = $exception->getMessage();
                 $response->end($message.PHP_EOL);
             }

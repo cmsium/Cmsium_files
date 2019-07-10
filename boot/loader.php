@@ -53,9 +53,9 @@ $application->files = $files_table;
 
 //Create Queue Exchange client
 $config = Config\ConfigManager::module('queue');
-$host = $config->get('host');
-$port = $config->get('port');
-$client = new \Queue\Producers\Producer($host, $port);
+$ex_host = $config->get('host');
+$ex_port = $config->get('port');
+$client = new \Queue\Producers\Producer($ex_host, $ex_port);
 $application->queue_client = $client;
 
 //Create Controller client
@@ -66,6 +66,8 @@ $timeout = $config->get('controller_timeout');
 $client = new \App\ControllerClient($url, $port, $timeout);
 $application->controller_client = $client;
 
+//Host info
+$application->host = $config->get('host_url');
 
 // Register middleware callbacks
 $plumber = \Plumber\Plumber::getInstance();
@@ -79,8 +81,8 @@ foreach (HELPERS as $helperFile) {
 }
 
 // Start file delete coroutine
-$application->registerStartupCallback(function(){
-    $consumer = new \Queue\Consumers\Consumer("127.0.0.1", 9503);
+$application->registerStartupCallback(function() use ($ex_host, $ex_port) {
+    $consumer = new \Queue\Consumers\Consumer($ex_host, $ex_port);
     $consumer->subscribe('files.delete');
     $consumer->on('files.delete', function ($data) {
         unlink($data['path']);
@@ -120,3 +122,4 @@ $application->registerStartupCallback(function () use ($application) {
     });
 });
 
+//TODO clear expired links coro

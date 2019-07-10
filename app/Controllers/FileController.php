@@ -1,13 +1,10 @@
 <?php
 namespace App\Controllers;
 
-use App\Exceptions\ControllerConnectError;
 use App\File;
 use App\Link;
-use Config\ConfigManager;
 use Files\drivers\Swoole;
 use Files\FileManager;
-use mysql_xdevapi\Exception;
 use Transaction\Transaction;
 use \Validation\Validator;
 
@@ -28,7 +25,6 @@ class FileController {
            app()->setStatusCode(500);
            return $errors;
        }
-
        $link = new Link($result, app()->links, app()->mysql);
        $client = app()->queue_client;
        $file = new File(app()->files, app()->mysql, $link, $client);
@@ -36,6 +32,7 @@ class FileController {
            $transaction = new Transaction(compact("link","file"));
            $transaction->link->CheckStatus("read");
            $transaction->file->createFromLink()->get()->send(app());
+           $transaction->link->tempDelete();
            $transaction->commit();
        } catch (\Exception $e) {
            app()->setStatusCode($e->getCode());
@@ -110,6 +107,6 @@ class FileController {
            return $e->getMessage();
        }
        app()->setStatusCode(200);
-       return $file->path;
+       return $link->getUploadLink(app()->host);
    }
 }

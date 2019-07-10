@@ -77,5 +77,6 @@ class SwooleTable implements Queue {
 
     public function destroy() {
         $this->table->destroy();
+        unset($this->table);
     }
 }
