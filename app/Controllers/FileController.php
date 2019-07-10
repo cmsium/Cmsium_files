@@ -107,6 +107,6 @@ class FileController {
            return $e->getMessage();
        }
        app()->setStatusCode(200);
-       return $link->getUploadLink(app()->host);
+       return ["url" => $link->getUploadLink(app()->host), "id" => $file->file_id];
    }
 }
