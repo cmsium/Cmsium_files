@@ -122,4 +122,8 @@ $application->registerStartupCallback(function () use ($application) {
     });
 });
 
-//TODO clear expired links coro
+//Clean expired links coro
+$manager = new \App\LinksManager($application->mysql, $application->links);
+$application->registerStartupCallback(function () use ($manager) {
+    \swoole_timer_tick(CLEAN_EXPIRED_LINKS_TIME , [$manager, 'cleanExpiredLinks']);
+});

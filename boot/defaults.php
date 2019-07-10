@@ -27,3 +27,5 @@ define ("ALLOWED_FILE_MIME_TYPES",['image/jpg','image/jpeg','image/png','applica
 define("EX_TYPES",['diff']);
 
 define('MAX_FILE_UPLOAD_SIZE', 100000000);
+
+define("CLEAN_EXPIRED_LINKS_TIME", 1000*60);

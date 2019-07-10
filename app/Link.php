@@ -6,6 +6,7 @@ use App\Exceptions\SwooleAlreadyExistException;
 use App\Exceptions\LinkCheckException;
 use App\Exceptions\LinkCheckStatusException;
 use App\Exceptions\SwooleSaveException;
+use DateTime;
 
 class Link {
     public $props;
@@ -38,7 +39,9 @@ class Link {
 
     public function normalizeDate() {
         if (!empty($this->expire)) {
-            $this->expire = \DateTime::createFromFormat(\DateTime::RFC3339, $this->expire)->format('Y-m-d H:i:s');
+            if ($datetime = \DateTime::createFromFormat(\DateTime::RFC3339, $this->expire)) {
+                $this->expire = $datetime->format('Y-m-d H:i:s');
+            }
         } elseif (isset($this->expire)) {
             unset($this->expire);
         }
@@ -238,6 +241,15 @@ class Link {
 
     public function dbUpdateCommit() {
         $this->conn->commit();
+    }
+
+    public function cleanExpired($expire) {
+        if (isset($this->expire)){
+            $link_expire = new DateTime($this->expire);
+            if ($expire > $link_expire){
+                $this->swooleDelete();
+            }
+        }
     }
 
     public function getUploadLink($host) {
