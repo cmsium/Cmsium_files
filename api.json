@@ -56,8 +56,8 @@
         ]
       },
       "delete": {
-        "summary": "Delete a file associated with given hash.",
-        "description": "Delete requested file associated with given hash (usually received from controller).",
+        "summary": "Delete a file.",
+        "description": "Delete requested file by id.",
         "operationId": "deleteFile",
         "tags": [
           "File"
@@ -75,13 +75,12 @@
         },
         "parameters": [
           {
-            "name": "hash",
+            "name": "id",
             "in": "path",
-            "description": "A hash of the file to delete",
+            "description": "An id of the file to delete",
             "required": true,
             "schema": {
-              "type": "string",
-              "format":"byte"
+              "type": "string"
             },
             "style": "simple"
           }
@@ -106,7 +105,7 @@
         },
         "responses": {
           "200": {
-            "description": "Successfully uploaded file URL",
+            "description": "Successfully uploaded file data",
             "content": {
               "application/json": {
                 "schema": {
@@ -114,13 +113,18 @@
                   "properties": {
                     "url": {
                       "type": "string"
+                    },
+                    "id": {
+                      "type": "string"
                     }
                   },
                   "required": [
-                    "url"
+                    "url",
+                    "id"
                   ],
                   "example": {
-                    "url": "http://file.service/file_hash"
+                    "url": "http://file.service/file/N2Y5MTY2MjQ2ZWVmMGQ2MWFlNTY3OWE4NzBmMmQ5ZmZkM2I4NzcxYzA3MzUzZDYyNTI1MGU4ODdiOWY4YmVhOQ==",
+                    "id": "120140915dd4c89353740d2c0c8e05c0"
                   }
                 }
               }

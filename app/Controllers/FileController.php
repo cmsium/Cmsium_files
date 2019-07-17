@@ -43,25 +43,21 @@ class FileController {
    }
 
    /**
-    * @summary Delete a file associated with given hash.
-    * @description Delete requested file associated with given hash (usually received from controller).
+    * @summary Delete a file.
+    * @description Delete requested file by id.
     */
-   public function deleteFile ($hash) {
-       $validator = new Validator(['hash' => $hash],"DeleteFile");
-       $result = $validator->get();
+   public function deleteFile ($id) {
+       $validator = new Validator(['id' => $id],"DeleteFile");
        if ($errors = $validator->errors()){
            app()->setStatusCode(500);
            return $errors;
        }
 
-       $link = new Link($result, app()->links, app()->mysql);
        $client = app()->queue_client;
-       $file = new File(app()->files, app()->mysql, $link, $client);
+       $file = new File(app()->files, app()->mysql, null, $client);
        try {
-           $transaction = new Transaction(compact("link","file"));
-           $transaction->link->CheckStatus("delete");
-           $transaction->file->createFromLink()->get()->makeDeleted()->deferredDelete();
-           $transaction->link->delete();
+           $transaction = new Transaction($file);
+           $transaction->createFromData(['file_id' => $id])->get()->makeDeleted()->deferredDelete();
            $transaction->commit();
        } catch (\Exception $e) {
            app()->setStatusCode($e->getCode());

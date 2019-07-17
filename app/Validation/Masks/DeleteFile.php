@@ -5,13 +5,13 @@ class DeleteFile extends \Validation\masks\OpenAPIParameters {
 public $structure = 
 [
     0 => [
-        'name' => 'hash',
+        'name' => 'id',
         'in' => 'path',
-        'description' => 'A hash of the file to delete',
+        'description' => 'An id of the file to delete',
         'required' => true,
         'schema' => [
             'type' => 'string',
-            'format' => 'base64',
+            'format' => 'md5',
         ],
         'style' => 'simple',
     ],

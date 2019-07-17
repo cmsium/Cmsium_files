@@ -39,8 +39,12 @@ class Link {
 
     public function normalizeDate() {
         if (!empty($this->expire)) {
-            if ($datetime = \DateTime::createFromFormat(\DateTime::RFC3339, $this->expire)) {
-                $this->expire = $datetime->format('Y-m-d H:i:s');
+            if ($this->temp) {
+                if ($datetime = \DateTime::createFromFormat(\DateTime::RFC3339, $this->expire)) {
+                    $this->expire = $datetime->format('Y-m-d H:i:s');
+                }
+            } else {
+                unset($this->expire);
             }
         } elseif (isset($this->expire)) {
             unset($this->expire);

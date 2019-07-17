@@ -25,7 +25,6 @@ class MetaController {
        }
        try {
            $link = new Link($result, app()->links, app()->mysql);
-
            $transaction = new Transaction($link);
            $transaction->notExist()->swooleSave()->dbSave();
            $transaction->commit();

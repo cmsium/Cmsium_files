@@ -34,4 +34,17 @@ class LinksManager {
 
     }
 
+    public function dbConnect() {
+        if (!$this->conn) {
+            $this->conn = new \Swoole\Coroutine\MySQL();
+            $this->conn->connect($this->db);
+        }
+    }
+
+    public function cleanDeletedFilesLinks() {
+        $this->dbConnect();
+        $query = "DELETE links from links INNER JOIN files ON links.file = files.file_id WHERE files.is_delete = 1;";
+        $this->conn->query($query);
+    }
+
 }

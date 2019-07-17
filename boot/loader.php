@@ -127,3 +127,9 @@ $manager = new \App\LinksManager($application->mysql, $application->links);
 $application->registerStartupCallback(function () use ($manager) {
     \swoole_timer_tick(CLEAN_EXPIRED_LINKS_TIME , [$manager, 'cleanExpiredLinks']);
 });
+
+//Clean links associated with deleted files coro
+$manager = new \App\LinksManager($application->mysql, $application->links);
+$application->registerStartupCallback(function () use ($manager) {
+    \swoole_timer_tick(CLEAN_DELETED_FILES_LINKS_TIME , [$manager, 'cleanDeletedFilesLinks']);
+});
