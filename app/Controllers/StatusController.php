@@ -15,7 +15,7 @@ class StatusController {
     public function getStatus() {
         $status = true;
         $space = disk_free_space(ROOTDIR . '/storage');
-        $connections = app()->connections;
+        $connections = app()->server->swooleServer->connections->count();
         return ['status' => $status, 'space' => $space, 'workload' => $connections];
     }
 

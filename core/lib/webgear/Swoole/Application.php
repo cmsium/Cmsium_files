@@ -9,6 +9,8 @@ use Webgear\Exceptions\InvalidDataTypeException;
 
 class Application extends GeneralApplication implements SwooleHttpApplication {
 
+    public $server;
+
     protected function run() {
         $request = new SwooleRequest($this->request);
         return $this->router->route($request);
