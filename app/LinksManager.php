@@ -42,6 +42,29 @@ class LinksManager {
     }
 
     public function cleanDeletedFilesLinks() {
+        $this->swooleCleanDeletedFilesLinks();
+        $this->dbCleanDeletedFilesLinks();
+    }
+
+    public function swooleCleanDeletedFilesLinks() {
+        $this->swooleDeleteLinks($this->dbGetDeletedFilesLinks());
+    }
+
+    public function swooleDeleteLinks($links_ids) {
+        foreach ($links_ids as $link_data){
+            $link = new Link($link_data, $this->table, $this->db);
+            $link->swooleDelete();
+            unset($link);
+        }
+    }
+
+    public function dbGetDeletedFilesLinks() {
+        $this->dbConnect();
+        $query = "SELECT hash from links INNER JOIN files ON links.file = files.file_id WHERE files.is_delete = 1;";
+        return $this->conn->query($query);
+    }
+
+    public function dbCleanDeletedFilesLinks() {
         $this->dbConnect();
         $query = "DELETE links from links INNER JOIN files ON links.file = files.file_id WHERE files.is_delete = 1;";
         $this->conn->query($query);
