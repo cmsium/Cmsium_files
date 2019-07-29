@@ -30,6 +30,18 @@ class Application extends GeneralApplication implements SwooleHttpApplication {
         return $this;
     }
 
+    public function getHeader($key) {
+        if (!isset($this->response->header[$key])) {
+            return false;
+        }
+
+        return $this->response->header[$key];
+    }
+
+    public function getHeaders() {
+        return $this->response->header;
+    }
+
     public function setCookie($key, $value = '', $expire = 0, $path = '/', $domain = '', $secure = false, $httponly = false) {
         $this->response->cookie($key, $value, $expire, $path, $domain, $secure, $httponly);
         return $this;

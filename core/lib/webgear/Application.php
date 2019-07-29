@@ -13,6 +13,7 @@ use Router\Router;
 abstract class Application {
 
     public $router;
+    public $server;
     public $request;
     public $response;
     public $appDirectory = 'app';

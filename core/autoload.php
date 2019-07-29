@@ -110,3 +110,9 @@ spl_autoload_register(function ($className) {
     loadRecursive(dirname(__DIR__).'/core/lib/queue', $className);
 });
 
+spl_autoload_register(function ($className) {
+    $classNameArray = explode('\\', $className);
+    $className = array_pop($classNameArray);
+    loadRecursive(dirname(__DIR__).'/core/lib/errors', $className);
+});
+

@@ -7,6 +7,7 @@ use DB\Exceptions\DBConnectionException;
 use DB\Exceptions\RunQueryException;
 use DB\Exceptions\TransactionException;
 use DB\Exceptions\UnsupportedDataTypeException;
+use mysqli;
 
 class MysqlConnection {
 
@@ -14,16 +15,16 @@ class MysqlConnection {
 
     protected $conn;
 
-    public function __construct() {
+    public function __construct($useDb = true) {
         $config = ConfigManager::module('db');
 
         $host = $config->get('servername');
         $port = (int)$config->get('port');
-        $dbname = $config->get('dbname');
+        $dbname = $useDb ? $config->get('dbname') : null;
         $username = $config->get('username');
         $password = $config->get('password');
 
-        $conn = new \mysqli($host, $username, $password, $dbname, $port);
+        $conn = new mysqli($host, $username, $password, $dbname, $port);
         if ($conn->connect_errno) {
             throw new DBConnectionException();
         }

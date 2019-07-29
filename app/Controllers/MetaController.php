@@ -1,6 +1,7 @@
 <?php
 namespace App\Controllers;
 
+use App\Exceptions\ValidationException;
 use App\Link;
 use Transaction\Transaction;
 use \Validation\Validator;
@@ -16,21 +17,19 @@ class MetaController {
     * @description Request file server from controller server to associate given hash with file id creating a temporary/persistent upload/read file link
     */
    public function saveLink () {
+       try {
        //validate data
        $validator = new Validator($this->request->getArgs(),"SaveLink");
        $result = $validator->get();
        if ($errors = $validator->errors()){
-           app()->setStatusCode(500);
-           return $errors;
+             throw new ValidationException($errors);
        }
-       try {
-           $link = new Link($result, app()->links, app()->mysql);
-           $transaction = new Transaction($link);
-           $transaction->notExist()->swooleSave()->dbSave();
-           $transaction->commit();
+       $link = new Link($result, app()->links, app()->mysql);
+       $transaction = new Transaction($link);
+       $transaction->notExist()->swooleSave()->dbSave();
+       $transaction->commit();
        } catch (\Exception $e) {
-           app()->setStatusCode($e->getCode());
-           return $e->getMessage();
+           return app()->error_handler->handle($e);
        }
        app()->setStatusCode(200);
        return true;

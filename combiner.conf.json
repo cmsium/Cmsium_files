@@ -12,6 +12,7 @@
     "lib/webgear",
     "lib/presenter",
     "lib/transaction",
-    "lib/queue"
+    "lib/queue",
+    "lib/errors"
   ]
 }

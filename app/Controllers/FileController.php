@@ -1,6 +1,7 @@
 <?php
 namespace App\Controllers;
 
+use App\Exceptions\ValidationException;
 use App\File;
 use App\Link;
 use Files\drivers\Swoole;
@@ -19,24 +20,22 @@ class FileController {
     * @description Returns requested file associated with given hash (usually received from controller).
     */
    public function getFile ($hash) {
-       $validator = new Validator(['hash' => $hash],"GetFile");
-       $result = $validator->get();
-       if ($errors = $validator->errors()){
-           app()->setStatusCode(500);
-           return $errors;
-       }
-       $link = new Link($result, app()->links, app()->mysql);
-       $client = app()->queue_client;
-       $file = new File(app()->files, app()->mysql, $link, $client);
-       try {
+       try{
+           $validator = new Validator(['hash' => $hash],"GetFile");
+           $result = $validator->get();
+           if ($errors = $validator->errors()){
+               throw new ValidationException($errors);
+           }
+           $link = new Link($result, app()->links, app()->mysql);
+           $client = app()->queue_client;
+           $file = new File(app()->files, app()->mysql, $link, $client);
            $transaction = new Transaction(compact("link","file"));
            $transaction->link->CheckStatus("read");
            $transaction->file->createFromLink()->get()->send(app());
            $transaction->link->tempDelete();
            $transaction->commit();
        } catch (\Exception $e) {
-           app()->setStatusCode($e->getCode());
-           return $e->getMessage();
+           return app()->error_handler->handle($e);
        }
        //app()->setStatusCode(200);
        return $file->isSend();
@@ -47,21 +46,19 @@ class FileController {
     * @description Delete requested file by id.
     */
    public function deleteFile ($id) {
-       $validator = new Validator(['id' => $id],"DeleteFile");
-       if ($errors = $validator->errors()){
-           app()->setStatusCode(500);
-           return $errors;
-       }
+       try{
+           $validator = new Validator(['id' => $id],"DeleteFile");
+           if ($errors = $validator->errors()){
+               throw new ValidationException($errors);
+           }
 
-       $client = app()->queue_client;
-       $file = new File(app()->files, app()->mysql, null, $client);
-       try {
+           $client = app()->queue_client;
+           $file = new File(app()->files, app()->mysql, null, $client);
            $transaction = new Transaction($file);
            $transaction->createFromData(['file_id' => $id])->get()->makeDeleted()->deferredDelete();
            $transaction->commit();
        } catch (\Exception $e) {
-           app()->setStatusCode($e->getCode());
-           return $e->getMessage();
+           return app()->error_handler->handle($e);
        }
        app()->setStatusCode(200);
        return true;
@@ -72,17 +69,16 @@ class FileController {
     * @description File upload request.
     */
    public function uploadFile ($hash) {
-       // validate
-       $validator = new Validator(['hash' => $hash],"UploadFile");
-       $result = $validator->get();
-       if ($errors = $validator->errors()){
-           app()->setStatusCode(500);
-           return $errors;
-       }
-       $link = new Link($result, app()->links, app()->mysql);
-       $manager = new FileManager(new Swoole());
-       $file = new File(app()->files, app()->mysql, $link);
-       try {
+       try{
+           // validate
+           $validator = new Validator(['hash' => $hash],"UploadFile");
+           $result = $validator->get();
+           if ($errors = $validator->errors()){
+               throw new ValidationException($errors);
+           }
+           $link = new Link($result, app()->links, app()->mysql);
+           $manager = new FileManager(new Swoole());
+           $file = new File(app()->files, app()->mysql, $link);
            $transaction = new Transaction(compact("link","file"));
            $transaction->link->CheckStatus("upload");
            $transaction->file->createFromLink();
@@ -99,8 +95,7 @@ class FileController {
                    var_dump($ex->getMessage());
                }
            }
-           app()->setStatusCode($e->getCode());
-           return $e->getMessage();
+           return app()->error_handler->handle($e);
        }
        app()->setStatusCode(200);
        return ["url" => $link->getUploadLink(app()->host), "id" => $file->file_id];

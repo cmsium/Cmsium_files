@@ -3,6 +3,7 @@
 
 // Load core libraries
 use Config\ConfigManager;
+use Plumber\Plumber;
 
 require_once dirname(__DIR__).'/boot/defaults.php';
 require_once ROOTDIR.'/core/autoload.php';
@@ -12,12 +13,21 @@ foreach (glob(ROOTDIR."/app/exceptions/*.php") as $class){
     require_once $class;
 }
 
-// Load app routes
 $router = new \Router\Router;
-include ROOTDIR.'/app/routes.php';
 
 // Build and load application instance
 $application = \Webgear\Swoole\Application::getInstance($router);
+
+// Load app routes
+include ROOTDIR.'/app/routes.php';
+
+
+// Register middleware callbacks
+$plumber = \Plumber\Plumber::getInstance();
+$pre = $plumber->buildPipeline('webgear.pre');
+$post = $plumber->buildPipeline('webgear.post');
+$api = $plumber->buildPipeline('routes.api');
+include ROOTDIR.'/app/middleware.php';
 
 // Prepare mysql connection data
 $config = Config\ConfigManager::module('db');
@@ -69,11 +79,8 @@ $application->controller_client = $client;
 //Host info
 $application->host = $config->get('host_url');
 
-// Register middleware callbacks
-$plumber = \Plumber\Plumber::getInstance();
-$pre = $plumber->buildPipeline('webgear.pre');
-$post = $plumber->buildPipeline('webgear.post');
-include ROOTDIR.'/app/middleware.php';
+//Error handler
+$application->error_handler = new \Errors\AppErrorHandler($application, \Presenter\PageBuilder::getInstance(), "error");
 
 // Load helper functions. Add file to helpers array to load it.
 foreach (HELPERS as $helperFile) {
