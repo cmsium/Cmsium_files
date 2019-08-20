@@ -11,12 +11,25 @@ class Server {
     public $swooleServer;
     public $application;
 
+    public $applications = [];
+
     private $host;
     private $port;
     private $https;
     private $sslCert;
     private $sslKey;
     private $http2;
+
+    public static $instance;
+
+    public static function getInstance(SwooleHttpApplication $application = null) : self {
+        if (static::$instance != null) {
+            return static::$instance;
+        }
+
+        static::$instance = new static($application);
+        return static::$instance;
+    }
 
     public function __construct(SwooleHttpApplication $application) {
         $this->application = $application;
@@ -88,8 +101,11 @@ class Server {
 
         $this->swooleServer->on("request", function ($request, $response) {
             try {
-                $this->application->server = $this;
-                $this->application->handle($request, $response);
+                $appId = \Swoole\Coroutine::getuid();
+                $app = clone $this->application;
+                $this->applications[$appId] = $app;
+                $app->server = $this;
+                $app->handle($request, $response);
             } catch (Exception $exception) {
                 $message = $exception->getMessage();
                 $response->end($message.PHP_EOL);
@@ -97,6 +113,10 @@ class Server {
         });
 
         return $this;
+    }
+
+    public function currentApp() {
+        return $this->applications[\Swoole\Coroutine::getuid()];
     }
 
     public function __destruct() {

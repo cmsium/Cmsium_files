@@ -1,9 +1,8 @@
 <?php
 namespace Files;
-use File;
 use Files\exceptions\NotImageException;
 
-class Image extends File {
+class BaseImage extends BaseFile {
     public $thumbFormat = 'png';
     public $thumbSize = 100;
     public $thumbPath;

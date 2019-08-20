@@ -4,9 +4,6 @@ create table files
     path      varchar(255)      null,
     is_delete tinyint default 0 null,
     name      varchar(255)      not null,
-    constraint files_file_id_uindex
-        unique (file_id)
+    constraint files_pk
+         primary key (file_id)
 );
-
-alter table files
-    add primary key (file_id);

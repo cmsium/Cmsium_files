@@ -20,13 +20,11 @@ define("HELPERS", [
     'main.php'
 ]);
 
-define ("FILES_ALLOWED_TYPES",['jpg','jpeg','png','pdf','doc','docx','txt','diff']);
-
-define ("ALLOWED_FILE_MIME_TYPES",['image/jpg','image/jpeg','image/png','application/pdf','application/vnd.openxmlformats-officedocument.wordprocessingml.document','application/msword','text/plain']);
-
-define("EX_TYPES",['diff']);
-
-define('MAX_FILE_UPLOAD_SIZE', 100000000);
+define("TEST_HELPERS", [
+    'test.main.php'
+]);
 
 define("CLEAN_EXPIRED_LINKS_TIME", 1000*60);
 define("CLEAN_DELETED_FILES_LINKS_TIME", 1000*60);
+
+define("SERVER_STATUS", true);

@@ -11,13 +11,10 @@ use DateTime;
 class Link {
     public $props;
     public $table;
-    public $mysql;
-    public $conn;
 
-    public function __construct(array $data, $table, $mysql = null) {
+    public function __construct(array $data, $table) {
         $this->props = $data;
         $this->table = $table;
-        $this->mysql = $mysql;
         $this->normalizeDate();
     }
 
@@ -121,13 +118,6 @@ class Link {
         $this->swooleDelete();
     }
 
-    public function dbConnect() {
-        if (!$this->conn) {
-            $this->conn = new \Swoole\Coroutine\MySQL();
-            $this->conn->connect($this->mysql);
-        }
-    }
-
     public function swooleDelete() {
         $this->table->del($this->hash);
     }
@@ -137,13 +127,11 @@ class Link {
     }
 
     public function dbDelete(){
-        $this->dbConnect();
-        $query = "DELETE from links where hash='{$this->hash}';";
-        $this->conn->query($query);
+        db()->delete("DELETE from links where hash='{$this->hash}';");
     }
 
     public function dbDeleteRollback() {
-        $this->conn->rollback();
+        db()->rollback();
     }
 
     public function delete() {
@@ -173,11 +161,9 @@ class Link {
     }
     
     public function dbGet() {
-        $this->dbConnect();
-        $query = "SELECT * from links where hash='{$this->hash}';";
-        $data = $this->conn->query($query);
+        $data = db()->selectFirst("SELECT * from links where hash='{$this->hash}';");
         if ($data) {
-            $this->props = $data[0];
+            $this->props = $data;
         }
         return $data;
     }
@@ -186,32 +172,30 @@ class Link {
         if ($this->temp){
             return true;
         }
-        $this->dbConnect();
         $this->normalizeDate();
-        $query = "INSERT INTO links (".
+        $result = db()->insert("INSERT INTO links (".
             implode(', ', array_keys($this->props)).
             ") VALUES (".
             rtrim(str_repeat("?,", count($this->props)), ",").
-            ")";
-        $stmt = $this->conn->prepare($query);
-        $result = $stmt->execute(array_values($this->props));
+            ")",
+            array_values($this->props)
+        );
         if ($result === false){
-            throw new MysqlException($this->conn->error);
+            throw new MysqlException();
         }
         return $result;
     }
 
     public function dbSaveBegin() {
-        $this->dbConnect();
-        $this->conn->begin();
+        db()->startTransaction();
     }
 
     public function dbSaveRollback() {
-        $this->conn->rollback();
+        db()->rollback();
     }
 
     public function dbSaveCommit() {
-        $this->conn->commit();
+        db()->commit();
     }
 
     public function dbUpdate() {
@@ -223,28 +207,25 @@ class Link {
         foreach ($this->props as $key => $value){
             $updates[] = "$key = ?";
         }
-        $this->dbConnect();
-        $stmt = $this->conn->prepare('UPDATE links SET '.implode(', ', $updates)." WHERE hash = ?");
         $preps = array_values($this->props);
         $preps[] = $this->props['hash'];
-        $result = $stmt->execute($preps);
+        $result = db()->update('UPDATE links SET '.implode(', ', $updates)." WHERE hash = ?", $preps);
         if ($result === false){
-            throw new MysqlException($this->conn->error);
+            throw new MysqlException();
         }
         return $result;
     }
 
     public function dbUpdateBegin() {
-        $this->dbConnect();
-        $this->conn->begin();
+        db()->startTransaction();
     }
 
     public function dbUpdateRollback() {
-        $this->conn->rollback();
+        db()->rollback();
     }
 
     public function dbUpdateCommit() {
-        $this->conn->commit();
+        db()->commit();
     }
 
     public function cleanExpired($expire) {

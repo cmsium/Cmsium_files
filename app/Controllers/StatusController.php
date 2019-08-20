@@ -2,6 +2,8 @@
 namespace App\Controllers;
 
 
+use App\Status;
+
 /**
  * @description Actions with file servers (get status ...)
  */
@@ -13,10 +15,8 @@ class StatusController {
      * @description" Get server status: get availability, free space and  workload,
      */
     public function getStatus() {
-        $status = true;
-        $space = disk_free_space(ROOTDIR . '/storage');
-        $connections = app()->server->swooleServer->connections->count();
-        return ['status' => $status, 'space' => $space, 'workload' => $connections];
+        $status = new Status(SERVER_STATUS, STORAGE_PATH);
+        return $status->get();
     }
 
 }

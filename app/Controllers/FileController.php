@@ -2,7 +2,7 @@
 namespace App\Controllers;
 
 use App\Exceptions\ValidationException;
-use App\File;
+use App\AppFile;
 use App\Link;
 use Files\drivers\Swoole;
 use Files\FileManager;
@@ -26,16 +26,15 @@ class FileController {
            if ($errors = $validator->errors()){
                throw new ValidationException($errors);
            }
-           $link = new Link($result, app()->links, app()->mysql);
-           $client = app()->queue_client;
-           $file = new File(app()->files, app()->mysql, $link, $client);
+           $link = new Link($result, app()->links);
+           $file = new AppFile(app()->files, $link);
            $transaction = new Transaction(compact("link","file"));
            $transaction->link->CheckStatus("read");
            $transaction->file->createFromLink()->get()->send(app());
            $transaction->link->tempDelete();
            $transaction->commit();
        } catch (\Exception $e) {
-           return app()->error_handler->handle($e);
+           return app()->error_handler->handle(app(), $e);
        }
        //app()->setStatusCode(200);
        return $file->isSend();
@@ -53,12 +52,12 @@ class FileController {
            }
 
            $client = app()->queue_client;
-           $file = new File(app()->files, app()->mysql, null, $client);
+           $file = new AppFile(app()->files,null, $client);
            $transaction = new Transaction($file);
            $transaction->createFromData(['file_id' => $id])->get()->makeDeleted()->deferredDelete();
            $transaction->commit();
        } catch (\Exception $e) {
-           return app()->error_handler->handle($e);
+           return app()->error_handler->handle(app(), $e);
        }
        app()->setStatusCode(200);
        return true;
@@ -76,13 +75,13 @@ class FileController {
            if ($errors = $validator->errors()){
                throw new ValidationException($errors);
            }
-           $link = new Link($result, app()->links, app()->mysql);
+           $link = new Link($result, app()->links);
            $manager = new FileManager(new Swoole());
-           $file = new File(app()->files, app()->mysql, $link);
+           $file = new AppFile(app()->files, $link);
            $transaction = new Transaction(compact("link","file"));
            $transaction->link->CheckStatus("upload");
            $transaction->file->createFromLink();
-           $transaction->file->upload($manager, app()->request->files, 'file', ROOTDIR . '/storage');
+           $transaction->file->upload($manager, files(), 'file', STORAGE_PATH);
            $transaction->file->swooleSave()->dbSave();
            $transaction->link->makeRead();
            $transaction->commit();
@@ -95,7 +94,7 @@ class FileController {
                    var_dump($ex->getMessage());
                }
            }
-           return app()->error_handler->handle($e);
+           return app()->error_handler->handle(app(), $e);
        }
        app()->setStatusCode(200);
        return ["url" => $link->getUploadLink(app()->host), "id" => $file->file_id];

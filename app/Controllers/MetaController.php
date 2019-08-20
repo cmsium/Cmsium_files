@@ -18,18 +18,18 @@ class MetaController {
     */
    public function saveLink () {
        try {
-       //validate data
-       $validator = new Validator($this->request->getArgs(),"SaveLink");
-       $result = $validator->get();
-       if ($errors = $validator->errors()){
-             throw new ValidationException($errors);
-       }
-       $link = new Link($result, app()->links, app()->mysql);
-       $transaction = new Transaction($link);
-       $transaction->notExist()->swooleSave()->dbSave();
-       $transaction->commit();
+           //validate data
+           $validator = new Validator($this->request->getArgs(),"SaveLink");
+           $result = $validator->get();
+           if ($errors = $validator->errors()){
+                 throw new ValidationException($errors);
+           }
+           $link = new Link($result, app()->links);
+           $transaction = new Transaction($link);
+           $transaction->notExist()->swooleSave()->dbSave();
+           $transaction->commit();
        } catch (\Exception $e) {
-           return app()->error_handler->handle($e);
+           return app()->error_handler->handle(app(), $e);
        }
        app()->setStatusCode(200);
        return true;

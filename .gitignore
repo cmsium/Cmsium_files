@@ -1,3 +1,5 @@
 .idea
 vendor
 storage
+storage_test
+storage_tmp

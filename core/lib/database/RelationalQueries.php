@@ -12,7 +12,7 @@ trait RelationalQueries {
             : $this->performQueryFetchAll($query);
         
         if ($result === false) {
-            throw new RunQueryException;
+            throw new RunQueryException($query);
         }
         
         return $result;
@@ -22,7 +22,7 @@ trait RelationalQueries {
         $result = $this->performQueryFetch($query);
         
         if ($result === false) {
-            throw new RunQueryException;
+            throw new RunQueryException($query);
         }
         
         return $result;

@@ -61,14 +61,12 @@ class Migrator {
         $this->checkDbNamePresent();
 
         $migrations_path = $this->config->get('migrations_path');
-
         foreach (glob(ROOTDIR.$migrations_path.'/*/up.sql') as $dir) {
             preg_match('/.+\/(.+)\/.+\.sql$/', $dir, $matches);
             $dir_name = $matches[1];
 
             if (empty($this->migrations->read()) || empty($this->migrations->read()[0])) {
                 $query = file_get_contents($dir);
-
                 $this->connection->statement($query);
 
                 $this->migrations->write($dir_name);
@@ -77,7 +75,6 @@ class Migrator {
                     continue; // Drop current iteration if migration found in history
                 } else {
                     $query = file_get_contents($dir);
-
                     $this->connection->statement($query);
 
                     $this->migrations->write($dir_name);

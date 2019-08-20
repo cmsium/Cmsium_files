@@ -5,9 +5,6 @@ create table links
     temp   tinyint default 0                 not null,
     expire datetime                          null,
     type   enum ('read', 'upload', 'delete') not null,
-    constraint links_hash_uindex
-        unique (hash)
+    constraint links_pk
+        primary key (hash)
 );
-
-alter table links
-    add primary key (hash);

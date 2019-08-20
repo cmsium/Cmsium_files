@@ -9,6 +9,9 @@ use Webgear\Exceptions\InvalidDataTypeException;
 
 class Application extends GeneralApplication implements SwooleHttpApplication {
 
+    /**
+     * @var \HttpServer\Server
+     */
     public $server;
 
     protected function run() {
@@ -17,6 +20,12 @@ class Application extends GeneralApplication implements SwooleHttpApplication {
     }
 
     protected function finish($result) {
+        //TODO normal way
+        $coro_id = \Swoole\Coroutine::getuid();
+        if ($coro_id =! -1) {
+            unset($this->server->applications[$coro_id]);
+        }
+
         if ($this->response->isFile) {
             $this->response->sendfile(...$result);
             return;

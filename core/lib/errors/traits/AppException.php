@@ -7,6 +7,6 @@ trait AppException {
     }
 
     public function get() {
-        return $this->message();
+        return $this->message;
     }
 }

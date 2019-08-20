@@ -2,7 +2,7 @@
 namespace Files;
 
 
-class PDF extends Image {
+class PDF extends BaseImage {
 
     public function __construct($path = null) {
         parent::__construct($path);

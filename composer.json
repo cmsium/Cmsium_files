@@ -1,0 +1,7 @@
+{
+  "require-dev": {
+    "phpunit/phpunit": "^8.2",
+    "mockery/mockery": "dev-master",
+    "fzaninotto/faker": "^1.8"
+  }
+}

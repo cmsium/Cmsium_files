@@ -1,7 +1,6 @@
 <?php
 namespace Files;
 use Exception;
-use File;
 use Files\exceptions\UnsupportedMIMEException;
 
 
@@ -11,9 +10,9 @@ class FileManager {
 
     public $driver;
     public $types = [
-        'image/jpg' => Image::class,
-        'image/jpeg' => Image::class,
-        'image/png' => Image::class,
+        'image/jpg' => BaseImage::class,
+        'image/jpeg' => BaseImage::class,
+        'image/png' => BaseImage::class,
         'application/pdf' => PDF::class,
         'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
         'application/msword',
@@ -52,10 +51,10 @@ class FileManager {
 
     public function create($path) {
         if (is_string($path)){
-            $file = (new File($path))->with(['driver' => $this->driver]);
+            $file = (new BaseFile($path))->with(['driver' => $this->driver]);
             $this->files[] = $file;
             return $file;
-        } elseif ($path instanceof File){
+        } elseif ($path instanceof BaseFile){
             $path->with(['driver' => $this->driver]);
             $this->files[] = $path;
             return $path;

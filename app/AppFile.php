@@ -7,24 +7,20 @@ namespace App;
 use App\Exceptions\FileGetException;
 use App\Exceptions\MysqlException;
 use App\Exceptions\SwooleSaveException;
+use Files\BaseFile;
 use Files\drivers\Swoole;
 
-class File {
+class AppFile {
     public $table;
     public $data=[];
-    public $mysql;
-    public $conn;
     public $link;
     public $queue;
     public $file = null;
     public $send = false;
     public $memory_limit = 4*1024*1024;
     
-    public function __construct($table, $mysql = null, $link = null, $queue = null) {
+    public function __construct($table, $link = null, $queue = null) {
         $this->table = $table;
-        if ($mysql){
-            $this->mysql = $mysql;
-        }
         if ($link){
             $this->link = $link;
         }
@@ -41,7 +37,7 @@ class File {
     }
 
     public function send($app) {
-        $file = (new \File($this->path))->with(["driver" => new Swoole(), "name" => $this->name]);
+        $file = (new BaseFile($this->path))->with(["driver" => new Swoole(), "name" => $this->name]);
         if ($file->size > $this->memory_limit){
             $this->send = $file->sendChunked($app, $this->memory_limit);
         } else {
@@ -136,70 +132,56 @@ class File {
         $this->dbUpdateRollback();
     }
 
-    public function dbConnect() {
-        if (!$this->conn) {
-            $this->conn = new \Swoole\Coroutine\MySQL();
-            $this->conn->connect($this->mysql);
-        }
-    }
-
     public function dbUpdate() {
-        $this->dbConnect();
-        $stmt = $this->conn->prepare("UPDATE files SET file_id=?, path=?, name=?, is_delete=? WHERE file_id = ?");
         $preps = array_values([$this->file_id, $this->path, $this->name, $this->is_delete]);
         $preps[] = $this->file_id;
-        $result = $stmt->execute($preps);
+        $result = db()->update("UPDATE files SET file_id=?, path=?, name=?, is_delete=? WHERE file_id = ?", $preps);
         if ($result === false){
-            throw new MysqlException($this->conn->error);
+            throw new MysqlException();
         }
         return $result;
     }
 
     public function dbUpdateBegin() {
-        $this->dbConnect();
-        $this->conn->begin();
+        db()->startTransaction();
     }
 
     public function dbUpdateRollback() {
-        $this->conn->rollback();
+        db()->rollback();
     }
 
     public function dbUpdateCommit() {
-        $this->conn->commit();
+        db()->commit();
     }
 
     public function dbGet() {
-        $this->dbConnect();
-        $stmt = $this->conn->prepare("SELECT * FROM files WHERE file_id=? and is_delete=0;");
-        $result = $stmt->execute([$this->file_id]);
+        $result = db()->select("SELECT * FROM files WHERE file_id='{$this->file_id}' and is_delete=0;");
         if ($result === false){
-            throw new MysqlException($this->conn->error);
+            throw new MysqlException();
         }
         return $result;
     }
 
 
     public function dbSave() {
-        $this->dbConnect();
-        $stmt = $this->conn->prepare("INSERT INTO files (file_id, path, name, is_delete) VALUES (?, ?, ?, ?)");
-        $result = $stmt->execute([$this->file_id, $this->path, $this->name, $this->is_delete]);
+        $fields = [$this->file_id, $this->path, $this->name, $this->is_delete];
+        $result = db()->insert("INSERT INTO files (file_id, path, name, is_delete) VALUES (?, ?, ?, ?)", $fields);
         if ($result === false){
-            throw new MysqlException($this->conn->error);
+            throw new MysqlException();
         }
         return $result;
     }
 
     public function dbSaveBegin() {
-        $this->dbConnect();
-        $this->conn->begin();
+        db()->startTransaction();
     }
 
     public function dbSaveRollback() {
-        $this->conn->rollback();
+        db()->rollback();
     }
 
     public function dbSaveCommit() {
-        $this->conn->commit();
+        db()->commit();
     }
 
     public function __get($name){

@@ -47,6 +47,18 @@ spl_autoload_register(function ($className) {
 spl_autoload_register(function ($className) {
     $classNameArray = explode('\\', $className);
     $className = array_pop($classNameArray);
+    loadRecursive(dirname(__DIR__).'/core/lib/errors', $className);
+});
+
+spl_autoload_register(function ($className) {
+    $classNameArray = explode('\\', $className);
+    $className = array_pop($classNameArray);
+    loadRecursive(dirname(__DIR__).'/core/lib/webgear', $className);
+});
+
+spl_autoload_register(function ($className) {
+    $classNameArray = explode('\\', $className);
+    $className = array_pop($classNameArray);
     loadRecursive(dirname(__DIR__).'/core/utils/openapi', $className);
 });
 
@@ -114,5 +126,11 @@ spl_autoload_register(function ($className) {
     $classNameArray = explode('\\', $className);
     $className = array_pop($classNameArray);
     loadRecursive(dirname(__DIR__).'/core/lib/errors', $className);
+});
+
+spl_autoload_register(function ($className) {
+    $classNameArray = explode('\\', $className);
+    $className = array_pop($classNameArray);
+    loadRecursive(dirname(__DIR__).'/core/lib/testgear', $className);
 });
 

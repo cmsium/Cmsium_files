@@ -6,8 +6,7 @@ class ErrorHandler {
     protected $app;
     protected $logger;
 
-    public function __construct($app, $logger = null){
-        $this->app = $app;
+    public function __construct($logger = null){
         $this->logger = $logger;
     }
 
@@ -17,23 +16,31 @@ class ErrorHandler {
         }
     }
 
-    public function handle(\Exception $e){
+    public function handle($app, \Exception $e){
         $this->log($e);
         if (method_exists($e, 'handle')) {
-            $e->handle($this->app);
+            $e->handle($app);
         }
-        return $this->formatOutput($e);
+        return $this->formatOutput($app, $e);
     }
 
-    public function formatOutput(\Exception $e) {
-        switch ($this->app->getHeader('Content-Type')){
-            case 'application/json': return $e->get(); break;
+    public function formatOutput($app, \Exception $e) {
+        switch ($app->getHeader('Content-Type')){
+            case 'application/json': return $this->get($e); break;
             case 'text/html': return $this->formatPage($e); break;
             default: return $this->formatPage($e);
         }
     }
 
     public function formatPage(\Exception $e) {
-        return $e->get();
+        return $this->get($e);
+    }
+
+    public function get(\Exception $e) {
+        if (method_exists($e, 'get')) {
+            return $e->get();
+        } else {
+            return $e->getMessage();
+        }
     }
 }

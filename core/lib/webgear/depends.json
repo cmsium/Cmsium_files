@@ -1,5 +1,6 @@
 [
   "lib/http_server",
   "lib/router",
-  "lib/plumber"
+  "lib/plumber",
+  "lib/errors"
 ]

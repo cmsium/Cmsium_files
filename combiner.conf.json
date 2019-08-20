@@ -13,6 +13,7 @@
     "lib/presenter",
     "lib/transaction",
     "lib/queue",
-    "lib/errors"
+    "lib/errors",
+    "lib/testgear"
   ]
 }
